@@ -1,4 +1,4 @@
-package pl.likonski;
+package pl.kw;
 
 
 import javafx.fxml.FXMLLoader;
@@ -20,10 +20,6 @@ public class Application extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-
-        //JavaPlot p = new JavaPlot();
-        //p.addPlot("sin(x)");
-        //p.plot();
         launch();
 
     }

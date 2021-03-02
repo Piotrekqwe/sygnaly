@@ -48,7 +48,7 @@
             <configuration>
                 <source>11</source>
                 <target>11</target>
-                <mainClass>pl.likonski.Application</mainClass>
+                <mainClass>pl.kw.Application</mainClass>
             </configuration>
         </plugin>
     </plugins>

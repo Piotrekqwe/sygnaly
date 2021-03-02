@@ -1,4 +1,4 @@
-package pl.likonski;
+package pl.kw;
 
 import com.panayotis.gnuplot.JavaPlot;
 import javafx.event.ActionEvent;
@@ -15,13 +15,13 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
 
-    public Button reset1, reset2;
+    public Button btn1, btn2;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        reset1.setText("Reset");
-        reset2.setText("Reset");
+
+
     }
 
     /**
@@ -38,7 +38,7 @@ public class Controller implements Initializable {
     /**
      * reset 1st distance counter
      */
-    public void reset1(ActionEvent actionEvent) {
+    public void fun1(ActionEvent actionEvent) {
         JavaPlot p = new JavaPlot();
         p.addPlot("sin(x)");
         p.plot();
@@ -46,7 +46,7 @@ public class Controller implements Initializable {
     /**
      * reset 2nd distance counter
      */
-    public void reset2(ActionEvent actionEvent) {
+    public void fun2(ActionEvent actionEvent) {
     }
 
 

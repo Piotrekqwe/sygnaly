@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPress" onKeyReleased="#keyRelease" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.likonski.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPress" onKeyReleased="#keyRelease" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.kw.Controller">
    <children>
-      <Button fx:id="reset1" focusTraversable="false" layoutX="21.0" layoutY="76.0" mnemonicParsing="false" onAction="#reset1" text="Reset" />
-      <Button fx:id="reset2" focusTraversable="false" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onAction="#reset2" text="Reset" />
+      <Button fx:id="btn1" focusTraversable="false" layoutX="21.0" layoutY="76.0" mnemonicParsing="false" onAction="#fun1" text="btn1" />
+      <Button fx:id="btn2" focusTraversable="false" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onAction="#reset2" text="btn2" />
    </children>
 </AnchorPane>
