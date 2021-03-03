@@ -1,11 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPress" onKeyReleased="#keyRelease" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.kw.Controller">
-   <children>
-      <Button fx:id="btn1" focusTraversable="false" layoutX="21.0" layoutY="76.0" mnemonicParsing="false" onAction="#fun1" text="btn1" />
-      <Button fx:id="btn2" focusTraversable="false" layoutX="21.0" layoutY="118.0" mnemonicParsing="false" onAction="#fun2" text="btn2" />
-   </children>
-</AnchorPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPress" onKeyReleased="#keyRelease" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.kw.Controller">
+    <tabs>
+        <Tab closable="false" text="Untitled Tab 1">
+            <content>
+                <GridPane layoutX="58.0" layoutY="46.0" prefHeight="162.0" prefWidth="448.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <RadioButton fx:id="btn1" mnemonicParsing="false" text="szum o rozkładzie jednostajnym">
+                                    <toggleGroup>
+                                        <ToggleGroup fx:id="function" />
+                                    </toggleGroup>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                                </RadioButton>
+                                <RadioButton fx:id="btn2" mnemonicParsing="false" text="szum gaussowski" toggleGroup="$function" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn3" mnemonicParsing="false" text="sygnał sinusoidalny" toggleGroup="$function" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn4" mnemonicParsing="false" text="sygnał sinusoidalny wyprostowany jednopołówkowo" toggleGroup="$function" wrapText="true" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn5" mnemonicParsing="false" text="sygnał sinusoidalny wyprostowany dwupołówkowo" toggleGroup="$function" wrapText="true" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn6" mnemonicParsing="false" text="sygnał prostokątny" toggleGroup="$function" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn7" mnemonicParsing="false" text="sygnał prostokątny symetryczny" toggleGroup="$function" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn8" mnemonicParsing="false" text="sygnał trójkątny" toggleGroup="$function" GridPane.rowIndex="7">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn9" mnemonicParsing="false" text="skok jednostkowy" toggleGroup="$function" GridPane.rowIndex="8">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn10" mnemonicParsing="false" text="impuls jednostkowy" toggleGroup="$function" GridPane.rowIndex="9">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                                <RadioButton fx:id="btn11" mnemonicParsing="false" text="szum impulsowy" toggleGroup="$function" GridPane.rowIndex="10">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin></RadioButton>
+                            </children>
+                        </GridPane>
+                  <GridPane GridPane.columnIndex="1">
+                      <columnConstraints>
+                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      </columnConstraints>
+                      <rowConstraints>
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      </rowConstraints>
+                  </GridPane>
+                    </children>
+                </GridPane>
+            </content>
+        </Tab>
+        <Tab closable="false" text="Untitled Tab 2">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" />
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>
