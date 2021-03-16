@@ -181,13 +181,29 @@
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="33.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="33.0" vgrow="SOMETIMES" />
                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <Button fx:id="generateDiagramBtn" mnemonicParsing="false" onAction="#generateDiagram" text="Oblicz" GridPane.halignment="CENTER" />
-                        <Button fx:id="showDiagramBtn" mnemonicParsing="false" onAction="#showDiagram" text="Podgląd" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Button fx:id="generateDiagramBtn" mnemonicParsing="false" onAction="#generateDiagram" text="Oblicz" GridPane.halignment="CENTER" />
+                                        <Button fx:id="showDiagramBtn" mnemonicParsing="false" onAction="#showCurrentDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button fx:id="showHistogramBtn" mnemonicParsing="false" onAction="#showCurrentHistogram" text="Podgląd Histogramu" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    </children>
+                                </GridPane>
                             </children>
                         </GridPane>
                     </children>
@@ -196,7 +212,154 @@
         </Tab>
         <Tab closable="false" text="Operacje na funkcjach">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" />
+                <GridPane layoutX="249.0" layoutY="176.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <ListView fx:id="listOfDiagrams" prefHeight="200.0" prefWidth="200.0" />
+                                <GridPane GridPane.rowIndex="1">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#saveDiagrams" text="Save" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                        <Button mnemonicParsing="false" onAction="#loadDiagrams" text="Load" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                        <Button mnemonicParsing="false" onAction="#showSelectedDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" />
+                                        <Button mnemonicParsing="false" onAction="#deleteSelectedDiagram" text="Usuń Diagram" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </GridPane>
+                        <GridPane GridPane.columnIndex="1">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#showSelectedHistogram" text="Podgląd Histogramu" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                                        <TextField fx:id="histogramSize" text="10" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba kolumn histogramu" GridPane.valignment="BOTTOM" />
+                                    </children>
+                                </GridPane>
+                                <GridPane GridPane.rowIndex="1">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Text fx:id="meanDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Średnia: ">
+                                            <GridPane.margin>
+                                                <Insets />
+                                            </GridPane.margin>
+                                        </Text>
+                                        <Text fx:id="absoluteMeanDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Średnia bezwzględna: " GridPane.rowIndex="1" />
+                                        <Text fx:id="averagePowerDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Moc średnia: " GridPane.rowIndex="2" />
+                                        <Text fx:id="varianceDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Wariancja: " GridPane.rowIndex="3" />
+                                        <Text fx:id="effectiveValueDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Wartość skuteczna: " GridPane.rowIndex="4" />
+                                        <Button mnemonicParsing="false" onAction="#calculateValues" text="Oblicz Wartości" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </GridPane>
+                        <GridPane GridPane.columnIndex="2">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="21.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="7.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <GridPane>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Text fx:id="firstDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="1 diagram" GridPane.valignment="TOP">
+                                            <GridPane.margin>
+                                                <Insets left="20.0" />
+                                            </GridPane.margin>
+                                        </Text>
+                                        <Button mnemonicParsing="false" onAction="#setDiagram1" text="Wybierz Diagram" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                                        <Text fx:id="secondDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="2 diagram" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                            <GridPane.margin>
+                                                <Insets left="20.0" />
+                                            </GridPane.margin>
+                                        </Text>
+                                        <Button mnemonicParsing="false" onAction="#setDiagram2" text="Wybierz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                                    </children>
+                                </GridPane>
+                                <GridPane GridPane.rowIndex="1">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#addAction" text="Dodaj" GridPane.halignment="CENTER" />
+                                        <Button mnemonicParsing="false" onAction="#subtractAction" text="Odejmij" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                        <Button mnemonicParsing="false" onAction="#multiplyAction" text="Pomnóż" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#divideAction" text="Podziel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#showCurrentDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                        <Button mnemonicParsing="false" onAction="#showCurrentHistogram" text="Podgląd Histogramu" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    </children>
+                                </GridPane>
+                        <Button mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                            </children>
+                        </GridPane>
+                    </children>
+                </GridPane>
             </content>
         </Tab>
     </tabs>
