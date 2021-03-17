@@ -1,6 +1,7 @@
 package pl.kw;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Random;
 
 import static java.lang.Math.PI;
@@ -35,7 +36,7 @@ public class Calculator {
 
         for(int i = 0; i < acc; i++) {
             points[i][0] = czasP + i * dlugosc / acc;
-            points[i][1] = amplituda * sin(2 * PI / okres * (points[i][0]));
+            points[i][1] = amplituda * sin(2 * PI / okres * (points[i][0] - czasP));
         }
         return points;
     }
@@ -45,7 +46,7 @@ public class Calculator {
 
         for(int i = 0; i < acc; i++) {
             points[i][0] = czasP + i * dlugosc / acc;
-            if((points[i][0] % okres) / okres < wypelnienie / 100){
+            if(((points[i][0] - czasP) % okres) / okres < wypelnienie / 100){
                 points[i][1] = max;
             } else {
                 points[i][1] = min;
@@ -59,10 +60,10 @@ public class Calculator {
 
         for(int i = 0; i < acc; i++) {
             points[i][0] = czasP + i * dlugosc / acc;
-            if((points[i][0] % okres) / okres < wygiecie / 100){
-                points[i][1] = amplituda * ((points[i][0] % okres) / okres / wygiecie * 100);
+            if(((points[i][0] - czasP) % okres) / okres < wygiecie / 100){
+                points[i][1] = amplituda * (((points[i][0] - czasP) % okres) / okres / wygiecie * 100);
             } else {
-                points[i][1] = amplituda - amplituda * ((points[i][0] % okres) / okres - wygiecie / 100) * 100 / (100 - wygiecie);
+                points[i][1] = amplituda - amplituda * (((points[i][0] - czasP) % okres) / okres - wygiecie / 100) * 100 / (100 - wygiecie);
             }
         }
         return points;
@@ -159,9 +160,16 @@ public class Calculator {
             i++;
         }
         while(j < second.length){
-            xValues.add(second[i][0]);
+            xValues.add(second[j][0]);
             j++;
         }
+        //System.out.println(xValues);
+        xValues.sort(new Comparator<Double>() {
+            @Override
+            public int compare(Double o1, Double o2) {
+                return o1.compareTo(o2);
+            }
+        });
         return xValues;
     }
 
