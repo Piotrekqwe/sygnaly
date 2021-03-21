@@ -87,7 +87,7 @@ public class Calculator {
         double[][] points = new double[acc][2];
 
         for(int i = 0; i < acc; i++) {
-            points[i][0] = czasP + i * dlugosc / acc;
+            points[i][0] = czasP + i * dlugosc / (acc - 1);
             if(i == nrImpulsu){
                 points[i][1] = max;
             } else {
@@ -102,7 +102,7 @@ public class Calculator {
         Random r = new Random();
 
         for(int i = 0; i < acc; i++) {
-            points[i][0] = czasP + i * dlugosc / acc;
+            points[i][0] = czasP + i * dlugosc / (acc - 1);
             if(r.nextDouble() <= chance / 100){
                 points[i][1] = max;
             } else {
