@@ -14,7 +14,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("MainStage.fxml")));
 
-        stage.setTitle("testujemy");
+        stage.setTitle("Generator Sygnałów");
         stage.setScene(new Scene(root,800,600));
         stage.show();
     }
