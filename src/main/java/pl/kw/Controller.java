@@ -25,9 +25,7 @@ import java.util.*;
 
 import static java.lang.Math.*;
 
-/**
- * This is the main controller class responsible for direct contact with javafx gui
- */
+
 public class Controller implements Initializable {
     public static int ACC = 1000;
     public static String SAVE_FILE_PATH = "diagrams.bin";
