@@ -34,6 +34,7 @@ public class Controller implements Initializable {
     private Diagram currentDiagram = null;
     private Diagram first = null;
     private Diagram second = null;
+    public TextField newNameField;
 
     //tab1
     public ToggleGroup function;
@@ -234,18 +235,18 @@ public class Controller implements Initializable {
         if (btn1.equals(selectedToggle)) {
             double[][] points = Calculator.szumJednostajny(Double.parseDouble(field1.getText()),
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()), ACC);
-            currentDiagram = new Diagram(points, Diagram.DiagramType.BOXES);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.BOXES, "szum o rozkładzie jednostajnym");
 
         } else if (btn2.equals(selectedToggle)) {
             double[][] points = Calculator.szumGaussowski(Double.parseDouble(field1.getText()),
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()), ACC);
-            currentDiagram = new Diagram(points, Diagram.DiagramType.BOXES);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.BOXES, "szum gaussowski");
 
         } else if (btn3.equals(selectedToggle)) {
             double[][] points = Calculator.sinusoida(Double.parseDouble(field1.getText()),
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()),
                     Double.parseDouble(field4.getText()), ACC);
-            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE, "sygnał sinusoidalny");
 
         } else if (btn4.equals(selectedToggle)) {
             double[][] points = Calculator.sinusoida(Double.parseDouble(field1.getText()),
@@ -256,7 +257,7 @@ public class Controller implements Initializable {
                     point[1] = 0;
                 }
             }
-            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE, "sygnał sinusoidalny wyprostowany jednopołówkowo");
 
         } else if (btn5.equals(selectedToggle)) {
             double[][] points = Calculator.sinusoida(Double.parseDouble(field1.getText()),
@@ -267,43 +268,43 @@ public class Controller implements Initializable {
                     point[1] *= -1;
                 }
             }
-            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE, "sygnał sinusoidalny wyprostowany dwupołówkowo");
 
         } else if (btn6.equals(selectedToggle)) {
             double[][] points = Calculator.prostokatny(Double.parseDouble(field1.getText()), 0,
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()),
                     Double.parseDouble(field4.getText()), Double.parseDouble(field5.getText()), ACC);
-            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE, "sygnał prostokątny");
 
         } else if (btn7.equals(selectedToggle)) {
             double[][] points = Calculator.prostokatny(Double.parseDouble(field1.getText()), -Double.parseDouble(field1.getText()),
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()),
                     Double.parseDouble(field4.getText()), Double.parseDouble(field5.getText()), ACC);
-            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE, "sygnał prostokątny symetryczny");
 
         } else if (btn8.equals(selectedToggle)) {
             double[][] points = Calculator.trojkatny(Double.parseDouble(field1.getText()),
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()),
                     Double.parseDouble(field4.getText()), Double.parseDouble(field5.getText()), ACC);
-            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE, "sygnał trójkątny");
 
         } else if (btn9.equals(selectedToggle)) {
             double[][] points = Calculator.skok(Double.parseDouble(field1.getText()), 0,
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()),
                     Double.parseDouble(field4.getText()), ACC);
-            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.LINE, "skok jednostkowy");
 
         } else if (btn10.equals(selectedToggle)) {
             double[][] points = Calculator.impulsJednostkowy(Double.parseDouble(field1.getText()), 0,
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()),
                     Double.parseDouble(field4.getText()), Integer.parseInt(field5.getText()));
-            currentDiagram = new Diagram(points, Diagram.DiagramType.POINTS);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.POINTS, "impuls jednostkowy");
 
         } else if (btn11.equals(selectedToggle)) {
             double[][] points = Calculator.szumImpulsowy(Double.parseDouble(field1.getText()), 0,
                     Double.parseDouble(field2.getText()), Double.parseDouble(field3.getText()),
                     Double.parseDouble(field4.getText()), Integer.parseInt(field5.getText()));
-            currentDiagram = new Diagram(points, Diagram.DiagramType.POINTS);
+            currentDiagram = new Diagram(points, Diagram.DiagramType.POINTS, "szum impulsowy");
 
 
         }
@@ -356,10 +357,10 @@ public class Controller implements Initializable {
         }
 
     }
-    public void showCurrentDiagram(ActionEvent actionEvent) {
+    public void showCurrentDiagram() {
         displayDiagram(currentDiagram);
     }
-    public void showSelectedDiagram(ActionEvent actionEvent) {
+    public void showSelectedDiagram() {
         Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             displayDiagram(diagram);
@@ -415,7 +416,7 @@ public class Controller implements Initializable {
     public void showCurrentHistogram() {
         generateHistogram(currentDiagram, 7);
     }
-    public void showSelectedHistogram(ActionEvent actionEvent) {
+    public void showSelectedHistogram() {
         Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             generateHistogram(diagram, Integer.parseInt(histogramSize.getText()));
@@ -423,7 +424,7 @@ public class Controller implements Initializable {
     }
 
     //list functions
-    public void addListItem(ActionEvent actionEvent) {
+    public void addListItem() {
         listOfDiagrams.getItems().add(currentDiagram);
     }
     public void deleteSelectedDiagram() {
@@ -438,6 +439,7 @@ public class Controller implements Initializable {
         }
     }
     public void loadDiagrams() {
+        listOfDiagrams.getItems().removeAll(listOfDiagrams.getItems());
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(SAVE_FILE_PATH))) {
             ArrayList<Diagram> diagrams = (ArrayList<Diagram>) in.readObject();
             for (Diagram diagram : diagrams) {
@@ -447,9 +449,13 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+    public void changeName() {
+        ((Diagram) listOfDiagrams.getSelectionModel().getSelectedItem()).name = newNameField.getText();
+        listOfDiagrams.refresh();
+    }
 
     //additional functions
-    public void calculateValues(ActionEvent actionEvent) {
+    public void calculateValues() {
         Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             double mean = 0;
@@ -487,36 +493,37 @@ public class Controller implements Initializable {
     }
 
     //operations
-    public void setDiagram1(ActionEvent actionEvent) {
+    public void setDiagram1() {
         first = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (first != null) {
             firstDiagramName.setText(first.toString());
         }
     }
-    public void setDiagram2(ActionEvent actionEvent) {
+    public void setDiagram2() {
         second = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (second != null) {
             secondDiagramName.setText(second.toString());
         }
     }
-    public void addAction(ActionEvent actionEvent) {
+    public void addAction() {
         if (first != null && second != null) {
-            currentDiagram = new Diagram(Calculator.add(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(Calculator.add(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE, "suma diagramów");
         }
     }
-    public void subtractAction(ActionEvent actionEvent) {
+    public void subtractAction() {
         if (first != null && second != null) {
-            currentDiagram = new Diagram(Calculator.subtract(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(Calculator.subtract(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE, "różnica diagramów");
         }
     }
-    public void multiplyAction(ActionEvent actionEvent) {
+    public void multiplyAction() {
         if (first != null && second != null) {
-            currentDiagram = new Diagram(Calculator.multiply(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(Calculator.multiply(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE, "iloczyn diagramów");
         }
     }
-    public void divideAction(ActionEvent actionEvent) {
+    public void divideAction() {
         if (first != null && second != null) {
-            currentDiagram = new Diagram(Calculator.divide(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE);
+            currentDiagram = new Diagram(Calculator.divide(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE, "iloraz diagramów");
         }
     }
+
 }
