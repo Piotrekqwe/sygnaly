@@ -30,11 +30,11 @@ public class Controller implements Initializable {
     public static int ACC = 1000;
     public static String SAVE_FILE_PATH = "diagrams.bin";
 
-    public static ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
+    //public static ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
+    public static ArrayList<Diagram> displayGroup = new ArrayList<Diagram>();
     private Diagram currentDiagram = null;
     private Diagram first = null;
     private Diagram second = null;
-    public TextField newNameField;
 
     //tab1
     public ToggleGroup function;
@@ -59,11 +59,11 @@ public class Controller implements Initializable {
     public TextField field3;
     public TextField field4;
     public TextField field5;
-    public Button generateDiagramBtn;
 
     //tab2
     public ListView listOfDiagrams;
     public TextField histogramSize;
+    public TextField newNameField;
     public Text meanDisplay;
     public Text absoluteMeanDisplay;
     public Text averagePowerDisplay;
@@ -72,6 +72,13 @@ public class Controller implements Initializable {
     public Text firstDiagramName;
     public Text secondDiagramName;
 
+    public TextField numberOfSamples;
+    public Text meanSquareErrorDisplay;
+    public Text signalToNoiseRatioDisplay;
+    public Text maxSignalToNoiseRatioDisplay;
+    public Text maxErrorDisplay;
+    public Text groupCountDisplay;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         numbersOnlyTextField(field1);
@@ -79,6 +86,8 @@ public class Controller implements Initializable {
         numbersOnlyTextField(field3);
         numbersOnlyTextField(field4);
         numbersOnlyTextField(field5);
+        numbersOnlyTextField(histogramSize);
+        numbersOnlyTextField(numberOfSamples);
         checkBtn();
     }
 
@@ -227,6 +236,94 @@ public class Controller implements Initializable {
         }
     }
 
+    //gnuplot functions
+    private DataSetPlot generateDataSet(Diagram diagram){
+        if (diagram != null) {
+            if (diagram.defaultDiagramType == Diagram.DiagramType.BOXES) {
+                PlotStyle myPlotStyle = new PlotStyle();
+                myPlotStyle.setStyle(Style.BOXES);
+                FillStyle fillStyle = new FillStyle();
+                fillStyle.setStyle(FillStyle.Fill.SOLID);
+                myPlotStyle.setFill(fillStyle);
+                myPlotStyle.setLineWidth(0);
+                DataSetPlot dataSetPlot = new DataSetPlot(diagram.getPoints());
+                dataSetPlot.setPlotStyle(myPlotStyle);
+                dataSetPlot.setTitle(diagram.name);
+                return dataSetPlot;
+
+            } else if (diagram.defaultDiagramType == Diagram.DiagramType.LINE) {
+                PlotStyle myPlotStyle = new PlotStyle();
+                myPlotStyle.setStyle(Style.LINES);
+                myPlotStyle.setLineWidth(0);
+                DataSetPlot dataSetPlot = new DataSetPlot(diagram.getPoints());
+                dataSetPlot.setPlotStyle(myPlotStyle);
+                dataSetPlot.setTitle(diagram.name);
+                return dataSetPlot;
+
+            } else if (diagram.defaultDiagramType == Diagram.DiagramType.POINTS) {
+                PlotStyle myPlotStyle = new PlotStyle();
+                myPlotStyle.setStyle(Style.POINTS);
+                myPlotStyle.setPointType(7);
+                DataSetPlot dataSetPlot = new DataSetPlot(diagram.getPoints());
+                dataSetPlot.setPlotStyle(myPlotStyle);
+                dataSetPlot.setTitle(diagram.name);
+                return dataSetPlot;
+            }
+        }
+        return null;
+    }
+    public void displayDiagram(Diagram diagram) {
+        JavaPlot p = new JavaPlot();
+        p.set("xzeroaxis", "");
+        DataSetPlot dataSetPlot = generateDataSet(diagram);
+        p.addPlot(dataSetPlot);
+        p.plot();
+    }
+    public void generateHistogram(Diagram diagram, int acc) {
+        if (diagram != null && acc > 1) {
+            String[] titles = new String[acc];
+            double[] values = new double[acc];
+            //Arrays.fill(values, 0.0);
+            titles[0] = df2.format(diagram.getMin());
+            for (int i = 1; i < acc; i++) {
+                double edge = diagram.getMin() + (diagram.getMax() - diagram.getMin()) * i / acc;
+                titles[i - 1] += "..." + df2.format(edge);
+                titles[i] = df2.format(edge);
+            }
+            titles[acc - 1] += "..." + df2.format(diagram.getMax());
+
+            for (double[] value : diagram.getPoints()) {
+                int index = (int) floor((value[1] - diagram.getMin()) * acc / (diagram.getMax() - diagram.getMin()));
+                if (index == acc) {
+                    index--;
+                }
+                values[index]++;
+            }
+
+            for (int i = 0; i < acc; i++) {
+                values[i] /= diagram.getPoints().length;
+            }
+            StringBuilder data = new StringBuilder("title histogram");
+            for (int i = 0; i < acc; i++) {
+                data.append("\n").append(titles[i]).append(" ").append(values[i]);
+            }
+
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
+                writer.write(data.toString());
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                Process p = new ProcessBuilder("\"C:\\Program Files\\gnuplot\\bin\\gnuplot\" -p \"script.gp\"").start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     //diagram functions
     public void generateDiagram() {
 
@@ -309,54 +406,6 @@ public class Controller implements Initializable {
 
         }
     }
-    public void displayDiagram(Diagram diagram) {
-        if (diagram != null) {
-            if (diagram.defaultDiagramType == Diagram.DiagramType.BOXES) {
-                JavaPlot p = new JavaPlot();
-                p.set("xzeroaxis", "");
-
-                PlotStyle myPlotStyle = new PlotStyle();
-                myPlotStyle.setStyle(Style.BOXES);
-                FillStyle fillStyle = new FillStyle();
-                fillStyle.setStyle(FillStyle.Fill.SOLID);
-                myPlotStyle.setFill(fillStyle);
-                myPlotStyle.setLineWidth(0);
-                DataSetPlot DataSetPlot = new DataSetPlot(diagram.getPoints());
-                DataSetPlot.setPlotStyle(myPlotStyle);
-
-                p.addPlot(DataSetPlot);
-                p.plot();
-
-            } else if (diagram.defaultDiagramType == Diagram.DiagramType.LINE) {
-                JavaPlot p = new JavaPlot();
-                p.set("xzeroaxis", "");
-
-                PlotStyle myPlotStyle = new PlotStyle();
-                myPlotStyle.setStyle(Style.LINES);
-                myPlotStyle.setLineWidth(0);
-                DataSetPlot DataSetPlot = new DataSetPlot(diagram.getPoints());
-                DataSetPlot.setPlotStyle(myPlotStyle);
-
-                p.addPlot(DataSetPlot);
-                p.plot();
-
-            } else if (diagram.defaultDiagramType == Diagram.DiagramType.POINTS) {
-                JavaPlot p = new JavaPlot();
-                p.set("xzeroaxis", "");
-
-                PlotStyle myPlotStyle = new PlotStyle();
-                myPlotStyle.setStyle(Style.POINTS);
-                myPlotStyle.setPointType(7);
-                DataSetPlot DataSetPlot = new DataSetPlot(diagram.getPoints());
-                DataSetPlot.setPlotStyle(myPlotStyle);
-
-                p.addPlot(DataSetPlot);
-                p.plot();
-
-            }
-        }
-
-    }
     public void showCurrentDiagram() {
         displayDiagram(currentDiagram);
     }
@@ -368,51 +417,6 @@ public class Controller implements Initializable {
     }
 
     //histogram functions
-    private static final DecimalFormat df2 = new DecimalFormat("#.##");
-    public void generateHistogram(Diagram diagram, int acc) {
-        if (diagram != null && acc > 1) {
-            String[] titles = new String[acc];
-            double[] values = new double[acc];
-            //Arrays.fill(values, 0.0);
-            titles[0] = df2.format(diagram.getMin());
-            for (int i = 1; i < acc; i++) {
-                double edge = diagram.getMin() + (diagram.getMax() - diagram.getMin()) * i / acc;
-                titles[i - 1] += "..." + df2.format(edge);
-                titles[i] = df2.format(edge);
-            }
-            titles[acc - 1] += "..." + df2.format(diagram.getMax());
-
-            for (double[] value : diagram.getPoints()) {
-                int index = (int) floor((value[1] - diagram.getMin()) * acc / (diagram.getMax() - diagram.getMin()));
-                if (index == acc) {
-                    index--;
-                }
-                values[index]++;
-            }
-
-            for (int i = 0; i < acc; i++) {
-                values[i] /= diagram.getPoints().length;
-            }
-            StringBuilder data = new StringBuilder("title histogram");
-            for (int i = 0; i < acc; i++) {
-                data.append("\n").append(titles[i]).append(" ").append(values[i]);
-            }
-
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"));
-                writer.write(data.toString());
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            try {
-                Process p = new ProcessBuilder("\"C:\\Program Files\\gnuplot\\bin\\gnuplot\" -p \"script.gp\"").start();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     public void showCurrentHistogram() {
         generateHistogram(currentDiagram, 7);
     }
@@ -425,7 +429,10 @@ public class Controller implements Initializable {
 
     //list functions
     public void addListItem() {
-        listOfDiagrams.getItems().add(currentDiagram);
+        if(currentDiagram != null){
+            listOfDiagrams.getItems().add(currentDiagram);
+        }
+        currentDiagram = null;
     }
     public void deleteSelectedDiagram() {
         listOfDiagrams.getItems().remove(listOfDiagrams.getSelectionModel().getSelectedItem());
@@ -455,6 +462,7 @@ public class Controller implements Initializable {
     }
 
     //additional functions
+    private static final DecimalFormat df2 = new DecimalFormat("#.##");
     public void calculateValues() {
         Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (diagram != null) {
@@ -523,6 +531,98 @@ public class Controller implements Initializable {
     public void divideAction() {
         if (first != null && second != null) {
             currentDiagram = new Diagram(Calculator.divide(first.getPoints(), second.getPoints()), Diagram.DiagramType.LINE, "iloraz diagramów");
+        }
+    }
+
+    //sampling and reconstruction
+    public void doSampling() {
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            Diagram newDiagram = new Diagram(Calculator.sampling(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
+                    Diagram.DiagramType.POINTS, "wynik próbkowania");
+            listOfDiagrams.getItems().add(newDiagram);
+        }
+    }
+    public void zeroOrder() {
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.zeroOrder(diagram.getPoints()), Diagram.DiagramType.LINE, "Zero Order Hold");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void firstOrder() {
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(diagram.getPoints(), Diagram.DiagramType.LINE, "First Order Hold");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void zeroOrderNormalized() {
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.zeroOrderNormalized(diagram.getPoints()), Diagram.DiagramType.LINE, "Zero Order z Zaokrąglaniem");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void sinc(){
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.sincInterpolation(diagram.getPoints(), ACC), Diagram.DiagramType.LINE, "sinc");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void compare() {
+        if (first != null && second != null) {
+            ArrayList<Double> xValues = Calculator.generateXValues(first.getPoints(), second.getPoints());
+            double[][] p1 = Calculator.rescale(xValues, first.getPoints());
+            double[][] p2 = Calculator.rescale(xValues, second.getPoints());
+
+            double meanSquareError = 0;
+            double maxError = 0;
+            double signalToNoiseRatio = 0;
+            double maxSignalToNoiseRatio = 0;
+            for (int i = 0; i < p1.length; i++) {
+                double error = Math.abs(p1[i][1] - p2[i][1]);
+                meanSquareError += Math.pow(error, 2);
+                if(error > maxError) maxError = error;
+                signalToNoiseRatio += Math.pow(p1[i][1], 2);
+                if(p1[i][1] > maxSignalToNoiseRatio) maxSignalToNoiseRatio = p1[i][1];
+            }
+            signalToNoiseRatio = Math.log10(signalToNoiseRatio / meanSquareError);
+            meanSquareError /= p1.length;
+            maxSignalToNoiseRatio = Math.log10(maxSignalToNoiseRatio / meanSquareError);
+
+            meanSquareErrorDisplay.setText("Błąd średniokwadratowy: " + df2.format(meanSquareError));
+            signalToNoiseRatioDisplay.setText("Stosunek sygnał - szum: " + df2.format(maxError));
+            maxSignalToNoiseRatioDisplay.setText("Szczytowy stosunek sygnał - szum: " + df2.format(signalToNoiseRatio));
+            maxErrorDisplay.setText("Maksymalna różnica: " + df2.format(maxSignalToNoiseRatio));
+        }
+    }
+
+    //multiple diagram display
+    public void updateGroupCount(){
+        groupCountDisplay.setText("liczba diagramów: " + displayGroup.size());
+    }
+    public void addToGroup() {
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null && !displayGroup.contains(diagram)) {
+            displayGroup.add(diagram);
+            updateGroupCount();
+        }
+    }
+    public void clearGroup() {
+        displayGroup.clear();
+        updateGroupCount();
+    }
+    public void showGroupOfDiagrams() {
+        if (displayGroup.size() >= 1){
+            JavaPlot p = new JavaPlot();
+            p.set("xzeroaxis", "");
+            for (Diagram diagram : displayGroup) {
+                DataSetPlot dataSetPlot = generateDataSet(diagram);
+                p.addPlot(dataSetPlot);
+            }
+            p.plot();
         }
     }
 

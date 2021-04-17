@@ -113,17 +113,17 @@ public class Calculator {
     }
 
 
-    private static double[][] rescale(ArrayList<Double> xValues, double[][] points) {
+    public static double[][] rescale(ArrayList<Double> xValues, double[][] points) {
         double[][] newPoints = new double[xValues.size()][2];
         for (int i = 0; i < xValues.size(); i++) {
             newPoints[i][0] = xValues.get(i);
         }
         int i = 0, j = 0;
-        while(i < xValues.size() && newPoints[i][0] < points[0][0]){
+        while(newPoints[i][0] < points[0][0]){
             newPoints[i][1] = 0;
             i++;
         }
-        while(i < xValues.size() && newPoints[i][0] <= points[points.length - 1][0]){
+        while(i < xValues.size() && j < points.length){
             if(newPoints[i][0] < points[j][0]){
                 newPoints[i][1] = ((points[j][0] - newPoints[i][0]) * points[j-1][1] + (newPoints[i][0] - points[j-1][0]) * points[j][1]) / (points[j][0] - points[j-1][0]);
                 i++;
@@ -139,38 +139,29 @@ public class Calculator {
         }
         return newPoints;
     }
-    private static ArrayList<Double> generateXValues(double[][] first, double[][] second){
-        ArrayList<Double> xValues = new ArrayList<Double>();
-        int i = 0, j = 0;
-        while(i < first.length && j < second.length){
-            if(first[i][0] < second[j][0]){
-                xValues.add(first[i][0]);
-                i++;
-            }else if(first[i][0] > second[j][0]){
-                xValues.add(second[i][0]);
-                j++;
-            }else{
-                xValues.add(first[i][0]);
-                i++;
-                j++;
-            }
+    public static ArrayList<Double> generateXValues(double[][] first, double[][] second){
+        ArrayList<Double> xValues = new ArrayList<>();
+
+        for (double[] d : first){
+            xValues.add(d[0]);
         }
-        while(i < first.length){
-            xValues.add(first[i][0]);
+        for (double[] d : second){
+            xValues.add(d[0]);
+        }
+
+        xValues.sort(Double::compareTo);
+        ArrayList<Double> result = new ArrayList<>();
+        result.add(xValues.get(0));
+        int i = 1;
+        while(i < xValues.size()){
+            if(!xValues.get(i).equals(xValues.get(i - 1))) {
+                result.add(xValues.get(i));
+            }
             i++;
         }
-        while(j < second.length){
-            xValues.add(second[j][0]);
-            j++;
-        }
-        //System.out.println(xValues);
-        xValues.sort(new Comparator<Double>() {
-            @Override
-            public int compare(Double o1, Double o2) {
-                return o1.compareTo(o2);
-            }
-        });
-        return xValues;
+
+
+        return result;
     }
 
     public static double[][] add(double[][] first, double[][] second){
@@ -218,4 +209,71 @@ public class Calculator {
         }
         return result;
     }
+
+    public static double[][] sampling(double[][] signal, int numberOfSamples){
+        double[][] result = new double[numberOfSamples + 1][2];
+        double min = signal[0][0];
+        double max = signal[signal.length - 1][0];
+        int iter = 0;
+        for (int i = 0; i < numberOfSamples; i++){
+            double time = (max * i + min * (numberOfSamples - i)) / numberOfSamples;
+            while(signal[iter][0] < time){
+                iter++;
+            }
+            result[i][0] = signal[iter][0];
+            result[i][1] = signal[iter][1];
+        }
+        result[numberOfSamples][0] = signal[signal.length - 1][0];
+        result[numberOfSamples][1] = signal[signal.length - 1][1];
+        return result;
+    }
+    public static double[][] zeroOrder(double[][] signal){
+        double[][] result = new double[signal.length * 2 - 1][2];
+        result[0][0] = signal[0][0];
+        result[0][1] = signal[0][1];
+        for(int i = 1; i < signal.length; i++){
+            result[i * 2 - 1][0] = signal[i][0];
+            result[i * 2 - 1][1] = signal[i - 1][1];
+            result[i * 2][0] = signal[i][0];
+            result[i * 2][1] = signal[i][1];
+        }
+
+        return result;
+    }
+    public static double[][] zeroOrderNormalized(double[][] signal){
+        double[][] result = new double[signal.length * 2][2];
+        result[0][0] = signal[0][0];
+        result[0][1] = signal[0][1];
+        for(int i = 1; i < signal.length; i++){
+            double avg = (signal[i - 1][0] + signal[i][0]) / 2;
+            result[i * 2 - 1][0] = avg;
+            result[i * 2][0] = avg;
+            result[i * 2 - 1][1] = signal[i - 1][1];
+            result[i * 2][1] = signal[i][1];
+        }
+        result[result.length - 1][0] = signal[signal.length - 1][0];
+        result[result.length - 1][1] = signal[signal.length - 1][1];
+
+        return result;
+    }
+    private static double sinc(double x){
+        if(x == 0) return 1;
+        double y = Math.PI * x;
+        return Math.sin(y) / y;
+    }
+    public static double[][] sincInterpolation(double[][] signal, int acc){
+        double[][] result = new double[acc][2];
+        double Ts = (signal[signal.length - 1][0] - signal[0][0]) / (signal.length - 1);
+        double Tr = (signal[signal.length - 1][0] - signal[0][0]) / (acc - 1);
+        for (int i = 0; i < acc; i++){
+            result[i][0] = i * Tr;
+            result[i][1] = 0;
+            for (int j = 0; j < signal.length; j++){
+                result[i][1] += signal[j][1] * sinc((result[i][0] / Ts) - j);
+            }
+        }
+        return result;
+    }
+
+
 }

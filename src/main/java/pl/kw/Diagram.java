@@ -24,17 +24,6 @@ public class Diagram implements java.io.Serializable {
         }
     }
 
-    //public Diagram(double[][] points, DiagramType defaultDiagramType) {
-    //    this.points = points;
-    //    this.defaultDiagramType = defaultDiagramType;
-    //    max = points[0][1];
-    //    min = max;
-    //    for(int i = 1; i < points.length; i++) {
-    //        if(points[i][1] > max){ max = points[i][1];}
-    //        else if (points[i][1] < min){ min = points[i][1];}
-    //    }
-    //}
-
     @Override
     public String toString() {
         if(name == null){
