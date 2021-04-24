@@ -211,20 +211,21 @@ public class Calculator {
     }
 
     public static double[][] sampling(double[][] signal, int numberOfSamples){
-        double[][] result = new double[numberOfSamples + 1][2];
+        int n = numberOfSamples - 1;
+        double[][] result = new double[n + 1][2];
         double min = signal[0][0];
         double max = signal[signal.length - 1][0];
         int iter = 0;
-        for (int i = 0; i < numberOfSamples; i++){
-            double time = (max * i + min * (numberOfSamples - i)) / numberOfSamples;
+        for (int i = 0; i < n; i++){
+            double time = (max * i + min * (n - i)) / n;
             while(signal[iter][0] < time){
                 iter++;
             }
             result[i][0] = signal[iter][0];
             result[i][1] = signal[iter][1];
         }
-        result[numberOfSamples][0] = signal[signal.length - 1][0];
-        result[numberOfSamples][1] = signal[signal.length - 1][1];
+        result[n][0] = signal[signal.length - 1][0];
+        result[n][1] = signal[signal.length - 1][1];
         return result;
     }
     public static double[][] zeroOrder(double[][] signal){
