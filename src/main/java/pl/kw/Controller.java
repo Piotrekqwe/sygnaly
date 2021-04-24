@@ -626,4 +626,21 @@ public class Controller implements Initializable {
         }
     }
 
+    //quantization
+    public void truncatedQuantization() {
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.truncatedQuantization(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
+                    Diagram.DiagramType.LINE, "wynik próbkowania");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void roundingQuantization() {
+        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.roundingQuantization(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
+                    Diagram.DiagramType.LINE, "wynik próbkowania");
+            displayDiagram(currentDiagram);
+        }
+    }
 }

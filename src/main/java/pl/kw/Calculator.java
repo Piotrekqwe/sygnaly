@@ -276,5 +276,54 @@ public class Calculator {
         return result;
     }
 
+    public static double[][] truncatedQuantization(double[][] signal, int acc){
+        double[][] result = new double[signal.length][2];
+        double[] levels = new double[acc];
+        double min = signal[0][1];
+        double max = signal[0][1];
+        for (double[] x : signal){
+            if(x[1] > max) max = x[1];
+            if(x[1] < min) min = x[1];
+        }
+        double dif = (max - min) / (acc - 1);
+        for(int i = 0; i < acc; i++) {
+            levels[i] = min + i * dif;
+        }
 
+        for (int i = 0; i < signal.length; i++){
+            int j = acc - 1;
+            while (j > 0 && levels[j] > signal[i][1]){
+                j--;
+            }
+            result[i][1] = levels[j];
+            result[i][0] = signal[i][0];
+        }
+
+        return result;
+    }
+    public static double[][] roundingQuantization(double[][] signal, int acc){
+        double[][] result = new double[signal.length][2];
+        double[] levels = new double[acc];
+        double min = signal[0][1];
+        double max = signal[0][1];
+        for (double[] x : signal){
+            if(x[1] > max) max = x[1];
+            if(x[1] < min) min = x[1];
+        }
+        double diff = (max - min) / (acc - 1);
+        for(int i = 0; i < acc; i++) {
+            levels[i] = min + i * diff - diff / 2;
+        }
+
+        for (int i = 0; i < signal.length; i++){
+            int j = acc - 1;
+            while (j > 0 && levels[j] > signal[i][1]){
+                j--;
+            }
+            result[i][1] = levels[j] + diff / 2;
+            result[i][0] = signal[i][0];
+        }
+
+        return result;
+    }
 }
