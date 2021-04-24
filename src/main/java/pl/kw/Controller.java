@@ -631,7 +631,7 @@ public class Controller implements Initializable {
         Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.truncatedQuantization(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
-                    Diagram.DiagramType.LINE, "wynik próbkowania");
+                    Diagram.DiagramType.LINE, "wynik kwantyzacji z obcięciem");
             displayDiagram(currentDiagram);
         }
     }
@@ -639,7 +639,7 @@ public class Controller implements Initializable {
         Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.roundingQuantization(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
-                    Diagram.DiagramType.LINE, "wynik próbkowania");
+                    Diagram.DiagramType.LINE, "wynik kwantyzacji z zaokrąglaniem");
             displayDiagram(currentDiagram);
         }
     }
