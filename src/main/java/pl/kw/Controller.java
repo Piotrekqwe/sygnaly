@@ -590,7 +590,7 @@ public class Controller implements Initializable {
             }
             signalToNoiseRatio = 10 * Math.log10(signalToNoiseRatio / meanSquareError);
             meanSquareError /= p1.length;
-            maxSignalToNoiseRatio = Math.log10(maxSignalToNoiseRatio / meanSquareError);
+            maxSignalToNoiseRatio = 10 * Math.log10(maxSignalToNoiseRatio / meanSquareError);
 
             meanSquareErrorDisplay.setText("Błąd średniokwadratowy: " + df2.format(meanSquareError));
             signalToNoiseRatioDisplay.setText("Stosunek sygnał - szum: " + df2.format(signalToNoiseRatio));
