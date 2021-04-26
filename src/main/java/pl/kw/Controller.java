@@ -588,14 +588,14 @@ public class Controller implements Initializable {
                 signalToNoiseRatio += Math.pow(p1[i][1], 2);
                 if(p1[i][1] > maxSignalToNoiseRatio) maxSignalToNoiseRatio = p1[i][1];
             }
-            signalToNoiseRatio = Math.log10(signalToNoiseRatio / meanSquareError);
+            signalToNoiseRatio = 10 * Math.log10(signalToNoiseRatio / meanSquareError);
             meanSquareError /= p1.length;
             maxSignalToNoiseRatio = Math.log10(maxSignalToNoiseRatio / meanSquareError);
 
             meanSquareErrorDisplay.setText("Błąd średniokwadratowy: " + df2.format(meanSquareError));
-            signalToNoiseRatioDisplay.setText("Stosunek sygnał - szum: " + df2.format(maxError));
-            maxSignalToNoiseRatioDisplay.setText("Szczytowy stosunek sygnał - szum: " + df2.format(signalToNoiseRatio));
-            maxErrorDisplay.setText("Maksymalna różnica: " + df2.format(maxSignalToNoiseRatio));
+            signalToNoiseRatioDisplay.setText("Stosunek sygnał - szum: " + df2.format(signalToNoiseRatio));
+            maxSignalToNoiseRatioDisplay.setText("Szczytowy stosunek sygnał - szum: " + df2.format(maxSignalToNoiseRatio));
+            maxErrorDisplay.setText("Maksymalna różnica: " + df2.format(maxError));
         }
     }
 
