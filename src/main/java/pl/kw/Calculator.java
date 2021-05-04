@@ -1,11 +1,10 @@
 package pl.kw;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Random;
 
-import static java.lang.Math.PI;
-import static java.lang.Math.sin;
+import static java.lang.Math.*;
+
 
 public class Calculator {
 
@@ -259,8 +258,8 @@ public class Calculator {
     }
     private static double sinc(double x){
         if(x == 0) return 1;
-        double y = Math.PI * x;
-        return Math.sin(y) / y;
+        double y = PI * x;
+        return sin(y) / y;
     }
     public static double[][] sincInterpolation(double[][] signal, int acc){
         double[][] result = new double[acc][2];
@@ -325,5 +324,101 @@ public class Calculator {
         }
 
         return result;
+    }
+
+    public static double[][] entanglement(double[][] signal1, double[][] signal2) {
+        double[][] result = new double[signal1.length + signal2.length - 1][2];
+        double start = signal1[0][0];
+        double end = signal1[signal1.length - 1][0];
+        if (signal1[0][0] > signal2[0][0]) {
+            start = signal2[0][0];
+        }
+        if (signal1[signal1.length - 1][0] < signal2[signal2.length - 1][0]) {
+            end = signal2[signal2.length - 1][0];
+        }
+        for (int i = 0; i < result.length; i++) {
+            result[i][0] = (result.length - i) * start + i * end;
+            result[i][1] = 0;
+            int j = 0;
+            int k = i;
+            if (i > signal2.length - 1) {
+                int temp = i - (signal2.length - 1);
+                j += temp;
+                k -= temp;
+            }
+            while (k >= 0 && j < signal1.length) {
+                result[i][1] += signal1[j][1] * signal2[k][1];
+                j++;
+                k--;
+            }
+        }
+        return result;
+    }
+    public static double[][] correlation(double[][] signal1, double[][] signal2){
+        double[][] result = new double[signal1.length + signal2.length - 1][2];
+        double start = signal1[0][0];
+        double end = signal1[signal1.length - 1][0];
+        if(signal1[0][0] > signal2[0][0]){
+            start = signal2[0][0];
+        }
+        if(signal1[signal1.length - 1][0] < signal2[signal2.length - 1][0]){
+            end = signal2[signal2.length - 1][0];
+        }
+
+        for (int i = 0; i < result.length; i++) {
+            result[i][0] = (result.length - i) * start + i * end;
+            result[i][1] = 0;
+            int j = 0;
+            int k = 0;
+            if (i > signal2.length - 1) {
+                j += i - (signal2.length - 1);
+            }
+            else if(i < signal2.length - 1){
+                k += (signal2.length - 1) - i;
+            }
+            while (k < signal2.length && j < signal1.length) {
+                result[i][1] += signal1[j][1] * signal2[k][1];
+                j++;
+                k++;
+            }
+        }
+
+        return result;
+    }
+
+    public static double[] getHTable(double k, int m, boolean high, boolean blackmanWindow){
+        double[] hTable = new double[m];
+        for(int i = 0; i < m; i++){
+            double temp = PI * (i - (m - 1) / 2);
+            hTable[i] = sin((2 * temp / k)) / temp;
+        }
+        hTable[(m-1) / 2] = 2 / k;
+        if(high) for(int i = 1; i < m; i+=2) hTable[i] = -hTable[i];
+        if(blackmanWindow) {
+            for (int i = 1; i < m; i += 2) {
+                double temp = 2 * PI * i / m;
+                hTable[i] *= 0.42 - 0.5 * cos(temp) + 0.08 * cos(2 * temp);
+            }
+        }
+        return hTable;
+    }
+    public static double[][] showH(double k, int m, boolean highPass, boolean blackmanWindow){
+        double[] h = getHTable(k, m, highPass, blackmanWindow);
+        double[][] hTable = new double[h.length][2];
+        for(int i = 0; i < h.length; i++){
+            hTable[i][0] = i;
+            hTable[i][1] = h[i];
+        }
+        return hTable;
+    }
+    public static double[][] filter(double[][] signal, double k, int m, boolean highPass, boolean blackmanWindow){
+        double[] h = getHTable(k, m, highPass, blackmanWindow);
+        double[][] hTable = new double[h.length][2];
+        for(int i = 0; i < h.length; i++){
+            hTable[i][0] = 0;
+            hTable[i][1] = h[i];
+        }
+        return entanglement(signal, hTable);
+
     }
 }

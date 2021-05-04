@@ -2,17 +2,11 @@ package pl.kw;
 
 import com.panayotis.gnuplot.JavaPlot;
 import com.panayotis.gnuplot.plot.DataSetPlot;
-import com.panayotis.gnuplot.plot.FunctionPlot;
-import com.panayotis.gnuplot.plot.Plot;
 import com.panayotis.gnuplot.style.FillStyle;
 import com.panayotis.gnuplot.style.PlotStyle;
 import com.panayotis.gnuplot.style.Style;
-import com.panayotis.gnuplot.terminal.GNUPlotTerminal;
-import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -30,11 +24,13 @@ public class Controller implements Initializable {
     public static int ACC = 1000;
     public static String SAVE_FILE_PATH = "diagrams.bin";
 
-    //public static ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
+    public static ArrayList<Diagram> listOfDiagrams = new ArrayList<Diagram>();
     public static ArrayList<Diagram> displayGroup = new ArrayList<Diagram>();
     private Diagram currentDiagram = null;
     private Diagram first = null;
     private Diagram second = null;
+    private Diagram first2 = null;
+    private Diagram second2 = null;
 
     //tab1
     public ToggleGroup function;
@@ -61,9 +57,9 @@ public class Controller implements Initializable {
     public TextField field5;
 
     //tab2
-    public ListView listOfDiagrams;
-    public TextField histogramSize;
+    public ListView listView;
     public TextField newNameField;
+    public TextField histogramSize;
     public Text meanDisplay;
     public Text absoluteMeanDisplay;
     public Text averagePowerDisplay;
@@ -78,6 +74,16 @@ public class Controller implements Initializable {
     public Text maxSignalToNoiseRatioDisplay;
     public Text maxErrorDisplay;
     public Text groupCountDisplay;
+
+    //tab3
+    public ListView listView2;
+    public TextField newNameField2;
+    public Text firstDiagramName2;
+    public Text secondDiagramName2;
+    public TextField kField;
+    public TextField mField;
+    public CheckBox blackManBtn;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -237,7 +243,7 @@ public class Controller implements Initializable {
     }
 
     //gnuplot functions
-    private DataSetPlot generateDataSet(Diagram diagram){
+    private DataSetPlot generateDataSet(Diagram diagram) {
         if (diagram != null) {
             if (diagram.defaultDiagramType == Diagram.DiagramType.BOXES) {
                 PlotStyle myPlotStyle = new PlotStyle();
@@ -410,7 +416,13 @@ public class Controller implements Initializable {
         displayDiagram(currentDiagram);
     }
     public void showSelectedDiagram() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            displayDiagram(diagram);
+        }
+    }
+    public void showSelectedDiagram2() {
+        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             displayDiagram(diagram);
         }
@@ -421,50 +433,71 @@ public class Controller implements Initializable {
         generateHistogram(currentDiagram, 7);
     }
     public void showSelectedHistogram() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             generateHistogram(diagram, Integer.parseInt(histogramSize.getText()));
         }
     }
 
     //list functions
+    public void refreshLists() {
+        listView.getItems().removeAll(listView.getItems());
+        listView2.getItems().removeAll(listView2.getItems());
+        for (Diagram d : listOfDiagrams) {
+            listView.getItems().add(d);
+            listView2.getItems().add(d);
+        }
+    }
+    public void addDiagramToLists(Diagram diagram) {
+        listOfDiagrams.add(diagram);
+        listView.getItems().add(diagram);
+        listView2.getItems().add(diagram);
+    }
     public void addListItem() {
-        if(currentDiagram != null){
-            listOfDiagrams.getItems().add(currentDiagram);
+        if (currentDiagram != null) {
+            addDiagramToLists(currentDiagram);
         }
         currentDiagram = null;
     }
     public void deleteSelectedDiagram() {
-        listOfDiagrams.getItems().remove(listOfDiagrams.getSelectionModel().getSelectedItem());
+        listOfDiagrams.remove(listView.getSelectionModel().getSelectedItem());
+        refreshLists();
+    }
+    public void deleteSelectedDiagram2() {
+        listOfDiagrams.remove(listView2.getSelectionModel().getSelectedItem());
+        refreshLists();
     }
     public void saveDiagrams() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(SAVE_FILE_PATH))) {
-            ArrayList<Object> diagrams = new ArrayList<Object>(Arrays.asList((Object[]) listOfDiagrams.getItems().toArray()));
-            out.writeObject(diagrams);
+            out.writeObject(listOfDiagrams);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public void loadDiagrams() {
-        listOfDiagrams.getItems().removeAll(listOfDiagrams.getItems());
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(SAVE_FILE_PATH))) {
-            ArrayList<Diagram> diagrams = (ArrayList<Diagram>) in.readObject();
-            for (Diagram diagram : diagrams) {
-                listOfDiagrams.getItems().add(diagram);
-            }
+            listOfDiagrams = (ArrayList<Diagram>) in.readObject();
+            refreshLists();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     public void changeName() {
-        ((Diagram) listOfDiagrams.getSelectionModel().getSelectedItem()).name = newNameField.getText();
-        listOfDiagrams.refresh();
+        ((Diagram) listView.getSelectionModel().getSelectedItem()).name = newNameField.getText();
+        listView.refresh();
+        listView2.refresh();
+    }
+    public void changeName2() {
+        ((Diagram) listView2.getSelectionModel().getSelectedItem()).name = newNameField2.getText();
+        listView.refresh();
+        listView2.refresh();
     }
 
     //additional functions
     private static final DecimalFormat df2 = new DecimalFormat("#.##");
+
     public void calculateValues() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             double mean = 0;
             for (double[] point : diagram.getPoints()) {
@@ -502,13 +535,13 @@ public class Controller implements Initializable {
 
     //operations
     public void setDiagram1() {
-        first = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        first = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (first != null) {
             firstDiagramName.setText(first.toString());
         }
     }
     public void setDiagram2() {
-        second = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        second = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (second != null) {
             secondDiagramName.setText(second.toString());
         }
@@ -536,36 +569,36 @@ public class Controller implements Initializable {
 
     //sampling and reconstruction
     public void doSampling() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             Diagram newDiagram = new Diagram(Calculator.sampling(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
                     Diagram.DiagramType.POINTS, "wynik próbkowania");
-            listOfDiagrams.getItems().add(newDiagram);
+            addDiagramToLists(newDiagram);
         }
     }
     public void zeroOrder() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.zeroOrder(diagram.getPoints()), Diagram.DiagramType.LINE, "Zero Order Hold");
             displayDiagram(currentDiagram);
         }
     }
     public void firstOrder() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(diagram.getPoints(), Diagram.DiagramType.LINE, "First Order Hold");
             displayDiagram(currentDiagram);
         }
     }
     public void zeroOrderNormalized() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.zeroOrderNormalized(diagram.getPoints()), Diagram.DiagramType.LINE, "Zero Order z Zaokrąglaniem");
             displayDiagram(currentDiagram);
         }
     }
-    public void sinc(){
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+    public void sinc() {
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.sincInterpolation(diagram.getPoints(), ACC), Diagram.DiagramType.LINE, "sinc");
             displayDiagram(currentDiagram);
@@ -584,9 +617,9 @@ public class Controller implements Initializable {
             for (int i = 0; i < p1.length; i++) {
                 double error = Math.abs(p1[i][1] - p2[i][1]);
                 meanSquareError += Math.pow(error, 2);
-                if(error > maxError) maxError = error;
+                if (error > maxError) maxError = error;
                 signalToNoiseRatio += Math.pow(p1[i][1], 2);
-                if(p1[i][1] > maxSignalToNoiseRatio) maxSignalToNoiseRatio = p1[i][1];
+                if (p1[i][1] > maxSignalToNoiseRatio) maxSignalToNoiseRatio = p1[i][1];
             }
             signalToNoiseRatio = 10 * Math.log10(signalToNoiseRatio / meanSquareError);
             meanSquareError /= p1.length;
@@ -600,11 +633,11 @@ public class Controller implements Initializable {
     }
 
     //multiple diagram display
-    public void updateGroupCount(){
+    public void updateGroupCount() {
         groupCountDisplay.setText("liczba diagramów: " + displayGroup.size());
     }
     public void addToGroup() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null && !displayGroup.contains(diagram)) {
             displayGroup.add(diagram);
             updateGroupCount();
@@ -615,7 +648,7 @@ public class Controller implements Initializable {
         updateGroupCount();
     }
     public void showGroupOfDiagrams() {
-        if (displayGroup.size() >= 1){
+        if (displayGroup.size() >= 1) {
             JavaPlot p = new JavaPlot();
             p.set("xzeroaxis", "");
             for (Diagram diagram : displayGroup) {
@@ -628,7 +661,7 @@ public class Controller implements Initializable {
 
     //quantization
     public void truncatedQuantization() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.truncatedQuantization(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
                     Diagram.DiagramType.LINE, "wynik kwantyzacji z obcięciem");
@@ -636,11 +669,65 @@ public class Controller implements Initializable {
         }
     }
     public void roundingQuantization() {
-        Diagram diagram = (Diagram) listOfDiagrams.getSelectionModel().getSelectedItem();
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.roundingQuantization(diagram.getPoints(), Integer.parseInt(numberOfSamples.getText())),
                     Diagram.DiagramType.LINE, "wynik kwantyzacji z zaokrąglaniem");
             displayDiagram(currentDiagram);
         }
     }
+
+    //tab3
+    public void setDiagram12() {
+        first2 = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (first2 != null) {
+            firstDiagramName2.setText(first2.toString());
+        }
+    }
+    public void setDiagram22() {
+        second2 = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (second2 != null) {
+            secondDiagramName2.setText(second2.toString());
+        }
+    }
+
+    public void entangle() {
+        if (first2 != null && second2 != null) {
+            currentDiagram = new Diagram(Calculator.entanglement(first2.getPoints(), second2.getPoints()), Diagram.DiagramType.LINE, "suma diagramów");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void correlation() {
+        if (first2 != null && second2 != null) {
+            currentDiagram = new Diagram(Calculator.correlation(first2.getPoints(), second2.getPoints()), Diagram.DiagramType.LINE, "suma diagramów");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void lowPassFilter() {
+        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.filter(diagram.getPoints(), Double.parseDouble(kField.getText()),
+                    Integer.parseInt(mField.getText()), false, blackManBtn.isSelected()), Diagram.DiagramType.LINE, "Wynik filtracji");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void showH() {
+        currentDiagram = new Diagram(Calculator.showH(Double.parseDouble(kField.getText()),
+                Integer.parseInt(mField.getText()), false, blackManBtn.isSelected()), Diagram.DiagramType.POINTS, "Wykres h");
+        displayDiagram(currentDiagram);
+    }
+    public void highPassFilter() {
+        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.filter(diagram.getPoints(), Double.parseDouble(kField.getText()),
+                    Integer.parseInt(mField.getText()), true, blackManBtn.isSelected()), Diagram.DiagramType.LINE, "Wynik filtracji");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void showHighH() {
+        currentDiagram = new Diagram(Calculator.showH(Double.parseDouble(kField.getText()),
+                Integer.parseInt(mField.getText()), true, blackManBtn.isSelected()), Diagram.DiagramType.POINTS, "Wykres h");
+        displayDiagram(currentDiagram);
+    }
+
 }
