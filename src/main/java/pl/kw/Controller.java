@@ -5,8 +5,6 @@ import com.panayotis.gnuplot.plot.DataSetPlot;
 import com.panayotis.gnuplot.style.FillStyle;
 import com.panayotis.gnuplot.style.PlotStyle;
 import com.panayotis.gnuplot.style.Style;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -22,15 +20,17 @@ import static java.lang.Math.*;
 
 public class Controller implements Initializable {
     public static int ACC = 1000;
+    public static int HIGH_ACC = 20000;
     public static String SAVE_FILE_PATH = "diagrams.bin";
 
-    public static ArrayList<Diagram> listOfDiagrams = new ArrayList<Diagram>();
-    public static ArrayList<Diagram> displayGroup = new ArrayList<Diagram>();
+    public static ArrayList<Diagram> listOfDiagrams = new ArrayList<>();
+    public static ArrayList<Diagram> displayGroup = new ArrayList<>();
     private Diagram currentDiagram = null;
     private Diagram first = null;
     private Diagram second = null;
     private Diagram first2 = null;
     private Diagram second2 = null;
+    private Diagram probeSignal = null;
 
     //tab1
     public ToggleGroup function;
@@ -83,32 +83,40 @@ public class Controller implements Initializable {
     public TextField kField;
     public TextField mField;
     public CheckBox blackManBtn;
+    public TextField probeSignalLength;
+
+    public Text probeSignalName;
+    public TextField bufferSizeField;
+    public TextField probingFrequencyField;
+    public TextField distanceField;
+    public TextField signalSpeedField;
+    public TextField objectSpeedField;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        numbersOnlyTextField(field1);
-        numbersOnlyTextField(field2);
-        numbersOnlyTextField(field3);
-        numbersOnlyTextField(field4);
-        numbersOnlyTextField(field5);
-        numbersOnlyTextField(histogramSize);
-        numbersOnlyTextField(numberOfSamples);
+        //numbersOnlyTextField(field1);
+        //numbersOnlyTextField(field2);
+        //numbersOnlyTextField(field3);
+        //numbersOnlyTextField(field4);
+        //numbersOnlyTextField(field5);
+        //numbersOnlyTextField(histogramSize);
+        //numbersOnlyTextField(numberOfSamples);
         checkBtn();
     }
 
     //auxiliary functions
-    private void numbersOnlyTextField(TextField textField) {
-        textField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    textField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-    }
+    //private void numbersOnlyTextField(TextField textField) {
+    //    textField.textProperty().addListener(new ChangeListener<String>() {
+    //        @Override
+    //        public void changed(ObservableValue<? extends String> observable, String oldValue,
+    //                            String newValue) {
+    //            if (!newValue.matches("\\d*")) {
+    //                textField.setText(newValue.replaceAll("[^\\d]", ""));
+    //            }
+    //        }
+    //    });
+    //}
     public void checkBtn() {
         Toggle selectedToggle = function.getSelectedToggle();
         if (btn1.equals(selectedToggle)) {
@@ -495,7 +503,6 @@ public class Controller implements Initializable {
 
     //additional functions
     private static final DecimalFormat df2 = new DecimalFormat("#.##");
-
     public void calculateValues() {
         Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
@@ -535,15 +542,17 @@ public class Controller implements Initializable {
 
     //operations
     public void setDiagram1() {
-        first = (Diagram) listView.getSelectionModel().getSelectedItem();
-        if (first != null) {
-            firstDiagramName.setText(first.toString());
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            first = diagram;
+            secondDiagramName2.setText(first.toString());
         }
     }
     public void setDiagram2() {
-        second = (Diagram) listView.getSelectionModel().getSelectedItem();
-        if (second != null) {
-            secondDiagramName.setText(second.toString());
+        Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            second = diagram;
+            secondDiagramName2.setText(second.toString());
         }
     }
     public void addAction() {
@@ -679,27 +688,29 @@ public class Controller implements Initializable {
 
     //tab3
     public void setDiagram12() {
-        first2 = (Diagram) listView2.getSelectionModel().getSelectedItem();
-        if (first2 != null) {
-            firstDiagramName2.setText(first2.toString());
+        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            first2 = diagram;
+            secondDiagramName2.setText(first2.toString());
         }
     }
     public void setDiagram22() {
-        second2 = (Diagram) listView2.getSelectionModel().getSelectedItem();
-        if (second2 != null) {
+        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            second2 = diagram;
             secondDiagramName2.setText(second2.toString());
         }
     }
 
     public void entangle() {
         if (first2 != null && second2 != null) {
-            currentDiagram = new Diagram(Calculator.entanglement(first2.getPoints(), second2.getPoints()), Diagram.DiagramType.LINE, "suma diagramów");
+            currentDiagram = new Diagram(Calculator.entanglement(first2.getPoints(), second2.getPoints()), Diagram.DiagramType.LINE, "splot");
             displayDiagram(currentDiagram);
         }
     }
     public void correlation() {
         if (first2 != null && second2 != null) {
-            currentDiagram = new Diagram(Calculator.correlation(first2.getPoints(), second2.getPoints()), Diagram.DiagramType.LINE, "suma diagramów");
+            currentDiagram = new Diagram(Calculator.correlation(first2.getPoints(), second2.getPoints()), Diagram.DiagramType.LINE, "korelacja");
             displayDiagram(currentDiagram);
         }
     }
@@ -707,7 +718,7 @@ public class Controller implements Initializable {
         Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.filter(diagram.getPoints(), Double.parseDouble(kField.getText()),
-                    Integer.parseInt(mField.getText()), false, blackManBtn.isSelected()), Diagram.DiagramType.LINE, "Wynik filtracji");
+                    Integer.parseInt(mField.getText()), false, blackManBtn.isSelected()), Diagram.DiagramType.LINE, "wynik filtracji");
             displayDiagram(currentDiagram);
         }
     }
@@ -720,7 +731,7 @@ public class Controller implements Initializable {
         Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             currentDiagram = new Diagram(Calculator.filter(diagram.getPoints(), Double.parseDouble(kField.getText()),
-                    Integer.parseInt(mField.getText()), true, blackManBtn.isSelected()), Diagram.DiagramType.LINE, "Wynik filtracji");
+                    Integer.parseInt(mField.getText()), true, blackManBtn.isSelected()), Diagram.DiagramType.LINE, "wynik filtracji");
             displayDiagram(currentDiagram);
         }
     }
@@ -730,4 +741,61 @@ public class Controller implements Initializable {
         displayDiagram(currentDiagram);
     }
 
+    //radar
+    public void generateExampleProbeSignal() {
+        Diagram newDiagram = new Diagram(Calculator.generateExampleProbeSignal(HIGH_ACC, Double.parseDouble(probeSignalLength.getText())), Diagram.DiagramType.LINE, "sygnał sondujący");
+        addDiagramToLists(newDiagram);
+    }
+
+    public void setProbeSignal() {
+        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            probeSignal = diagram;
+            probeSignalName.setText(probeSignal.toString());
+        }
+    }
+
+    public void showReflection() {
+        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            Diagram newDiagram = new Diagram(Calculator.reflection(
+                    diagram.getPoints(),
+                    Double.parseDouble(bufferSizeField.getText()),
+                    Double.parseDouble(probingFrequencyField.getText()),
+                    Double.parseDouble(distanceField.getText()),
+                    Double.parseDouble(signalSpeedField.getText()),
+                    Double.parseDouble(objectSpeedField.getText())),
+                    Diagram.DiagramType.LINE, "odbicie");
+            addDiagramToLists(newDiagram);
+        }
+
+
+
+//        double[][] x = new double[4][2];
+//        double[][] y = new double[3][2];
+//        for(double[] d : x){
+//            d[0] = 0;
+//        }
+//        for(double[] d : y){
+//            d[0] = 0;
+//        }
+//        x[0][1] = 5;
+//        x[1][1] = 2;
+//        x[2][1] = 4;
+//        x[3][1] = 1;
+//        y[0][1] = 3;
+//        y[1][1] = 1;
+//        y[2][1] = 7;
+//
+//        double[][] z =Calculator.correlation(x,y);
+//
+//        System.out.println(Arrays.deepToString(z));
+
+    }
+
+    public void radarSymulation() {
+        //TODO
+    }
 }
+//5 2 4 1
+//3 1 7
