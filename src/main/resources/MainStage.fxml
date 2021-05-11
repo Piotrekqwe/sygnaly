@@ -11,197 +11,197 @@
             <content>
                 <GridPane layoutX="58.0" layoutY="46.0" prefHeight="162.0" prefWidth="448.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
                         <GridPane>
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <RadioButton fx:id="btn1" mnemonicParsing="false" onAction="#checkBtn" selected="true" text="szum o rozkładzie jednostajnym">
                                     <toggleGroup>
-                                        <ToggleGroup fx:id="function" />
+                                        <ToggleGroup fx:id="function"/>
                                     </toggleGroup>
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn2" mnemonicParsing="false" onAction="#checkBtn" text="szum gaussowski" toggleGroup="$function" GridPane.rowIndex="1">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn3" mnemonicParsing="false" onAction="#checkBtn" text="sygnał sinusoidalny" toggleGroup="$function" GridPane.rowIndex="2">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn4" mnemonicParsing="false" onAction="#checkBtn" text="sygnał sinusoidalny wyprostowany jednopołówkowo" toggleGroup="$function" wrapText="true" GridPane.rowIndex="3">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn5" mnemonicParsing="false" onAction="#checkBtn" text="sygnał sinusoidalny wyprostowany dwupołówkowo" toggleGroup="$function" wrapText="true" GridPane.rowIndex="4">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn6" mnemonicParsing="false" onAction="#checkBtn" text="sygnał prostokątny" toggleGroup="$function" GridPane.rowIndex="5">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn7" mnemonicParsing="false" onAction="#checkBtn" text="sygnał prostokątny symetryczny" toggleGroup="$function" GridPane.rowIndex="6">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn8" mnemonicParsing="false" onAction="#checkBtn" text="sygnał trójkątny" toggleGroup="$function" GridPane.rowIndex="7">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn9" mnemonicParsing="false" onAction="#checkBtn" text="skok jednostkowy" toggleGroup="$function" GridPane.rowIndex="8">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn10" mnemonicParsing="false" onAction="#checkBtn" text="impuls jednostkowy" toggleGroup="$function" GridPane.rowIndex="9">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                                 <RadioButton fx:id="btn11" mnemonicParsing="false" onAction="#checkBtn" text="szum impulsowy" toggleGroup="$function" GridPane.rowIndex="10">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </RadioButton>
                             </children>
                         </GridPane>
                         <GridPane GridPane.columnIndex="1">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <GridPane>
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Text fx:id="title1" strokeType="OUTSIDE" strokeWidth="0.0" text="title1" GridPane.valignment="BOTTOM" />
-                                        <TextField fx:id="field1" text="10" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                        <Text fx:id="title1" strokeType="OUTSIDE" strokeWidth="0.0" text="title1" GridPane.valignment="BOTTOM"/>
+                                        <TextField fx:id="field1" text="10" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Text fx:id="title2" strokeType="OUTSIDE" strokeWidth="0.0" text="title2" GridPane.valignment="BOTTOM" />
-                                        <TextField fx:id="field2" text="0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                        <Text fx:id="title2" strokeType="OUTSIDE" strokeWidth="0.0" text="title2" GridPane.valignment="BOTTOM"/>
+                                        <TextField fx:id="field2" text="0" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Text fx:id="title3" strokeType="OUTSIDE" strokeWidth="0.0" text="title3" GridPane.valignment="BOTTOM" />
-                                        <TextField fx:id="field3" text="5" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                        <Text fx:id="title3" strokeType="OUTSIDE" strokeWidth="0.0" text="title3" GridPane.valignment="BOTTOM"/>
+                                        <TextField fx:id="field3" text="5" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="3">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Text fx:id="title4" strokeType="OUTSIDE" strokeWidth="0.0" text="title4" GridPane.valignment="BOTTOM" />
-                                        <TextField fx:id="field4" text="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                        <Text fx:id="title4" strokeType="OUTSIDE" strokeWidth="0.0" text="title4" GridPane.valignment="BOTTOM"/>
+                                        <TextField fx:id="field4" text="1" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="4">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Text fx:id="title5" strokeType="OUTSIDE" strokeWidth="0.0" text="title5" GridPane.valignment="BOTTOM" />
-                                        <TextField fx:id="field5" text="50" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                                        <Text fx:id="title5" strokeType="OUTSIDE" strokeWidth="0.0" text="title5" GridPane.valignment="BOTTOM"/>
+                                        <TextField fx:id="field5" text="50" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
                                     </children>
                                 </GridPane>
                             </children>
                         </GridPane>
                         <GridPane GridPane.columnIndex="2">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" percentHeight="33.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="33.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="33.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="33.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <GridPane>
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#generateDiagram" text="Oblicz" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#showCurrentDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#showCurrentHistogram" text="Podgląd Histogramu" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                        <Button mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                        <Button mnemonicParsing="false" onAction="#generateDiagram" text="Oblicz" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#showCurrentDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                                        <Button mnemonicParsing="false" onAction="#showCurrentHistogram" text="Podgląd Histogramu" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+                                        <Button mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="3"/>
                                     </children>
                                 </GridPane>
                             </children>
@@ -214,54 +214,54 @@
             <content>
                 <GridPane layoutX="249.0" layoutY="176.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
                         <GridPane>
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" percentHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" />
+                                <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0"/>
                                 <GridPane GridPane.rowIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#showSelectedDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#deleteSelectedDiagram" text="Usuń Diagram" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#saveDiagrams" text="Zapisz" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#loadDiagrams" text="Wczytaj" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#showSelectedDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#deleteSelectedDiagram" text="Usuń Diagram" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#saveDiagrams" text="Zapisz" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                                        <Button mnemonicParsing="false" onAction="#loadDiagrams" text="Wczytaj" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#changeName" text="Zmień nazwę" GridPane.halignment="CENTER" />
+                                        <Button mnemonicParsing="false" onAction="#changeName" text="Zmień nazwę" GridPane.halignment="CENTER"/>
                                         <TextField fx:id="newNameField" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                             <GridPane.margin>
-                                                <Insets left="10.0" right="10.0" />
+                                                <Insets left="10.0" right="10.0"/>
                                             </GridPane.margin>
                                         </TextField>
                                     </children>
@@ -270,232 +270,232 @@
                         </GridPane>
                         <GridPane GridPane.columnIndex="1">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="10.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="25.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <GridPane>
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <Button mnemonicParsing="false" onAction="#showSelectedHistogram" text="Podgląd Histogramu" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" />
+                                                <Insets bottom="5.0"/>
                                             </GridPane.margin>
                                         </Button>
                                         <TextField fx:id="histogramSize" text="10" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                             <GridPane.margin>
-                                                <Insets left="10.0" right="10.0" />
+                                                <Insets left="10.0" right="10.0"/>
                                             </GridPane.margin>
                                         </TextField>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Liczba kolumn histogramu" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0"/>
                                             </GridPane.margin>
                                         </Text>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <Text fx:id="meanDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Średnia: ">
                                             <GridPane.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Text fx:id="absoluteMeanDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Średnia bezwzględna: " GridPane.rowIndex="1">
                                             <GridPane.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Text fx:id="averagePowerDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Moc średnia: " GridPane.rowIndex="2">
                                             <GridPane.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Text fx:id="varianceDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Wariancja: " GridPane.rowIndex="3">
                                             <GridPane.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Text fx:id="effectiveValueDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Wartość skuteczna: " GridPane.rowIndex="4">
                                             <GridPane.margin>
-                                                <Insets left="10.0" />
+                                                <Insets left="10.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <Button mnemonicParsing="false" onAction="#calculateValues" text="Oblicz Wartości" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                                        <Button mnemonicParsing="false" onAction="#calculateValues" text="Oblicz Wartości" GridPane.halignment="CENTER" GridPane.rowIndex="5"/>
                                     </children>
                                     <GridPane.margin>
-                                        <Insets bottom="5.0" />
+                                        <Insets bottom="5.0"/>
                                     </GridPane.margin>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <Text fx:id="firstDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="1 diagram" GridPane.valignment="TOP">
                                             <GridPane.margin>
-                                                <Insets left="20.0" top="5.0" />
+                                                <Insets left="20.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Button mnemonicParsing="false" onAction="#setDiagram1" text="Wybierz Diagram" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" />
+                                                <Insets bottom="5.0"/>
                                             </GridPane.margin>
                                         </Button>
                                         <Text fx:id="secondDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="2 diagram" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                             <GridPane.margin>
-                                                <Insets left="20.0" top="5.0" />
+                                                <Insets left="20.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Button mnemonicParsing="false" onAction="#setDiagram2" text="Wybierz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" />
+                                                <Insets bottom="5.0"/>
                                             </GridPane.margin>
                                         </Button>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="3">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#addAction" text="Dodaj" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#subtractAction" text="Odejmij" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#multiplyAction" text="Pomnóż" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#divideAction" text="Podziel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#showCurrentDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                        <Button mnemonicParsing="false" onAction="#showCurrentHistogram" text="Podgląd Histogramu" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                        <Button mnemonicParsing="false" onAction="#addAction" text="Dodaj" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#subtractAction" text="Odejmij" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#multiplyAction" text="Pomnóż" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                                        <Button mnemonicParsing="false" onAction="#divideAction" text="Podziel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                                        <Button mnemonicParsing="false" onAction="#showCurrentDiagram" text="Podgląd Diagramu" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
+                                        <Button mnemonicParsing="false" onAction="#showCurrentHistogram" text="Podgląd Histogramu" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
                                     </children>
                                 </GridPane>
-                                <Button mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                <Button mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
                             </children>
                         </GridPane>
                         <GridPane GridPane.columnIndex="2">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="5.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="liczba próbek / poziomów kwantyzacji" GridPane.valignment="TOP">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </Text>
                                 <TextField fx:id="numberOfSamples" text="30" GridPane.valignment="BOTTOM">
                                     <GridPane.margin>
-                                        <Insets bottom="5.0" left="10.0" right="10.0" />
+                                        <Insets bottom="5.0" left="10.0" right="10.0"/>
                                     </GridPane.margin>
                                 </TextField>
-                                <Button mnemonicParsing="false" onAction="#doSampling" text="Próbkuj" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                <Button mnemonicParsing="false" onAction="#doSampling" text="Próbkuj" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
                                 <GridPane GridPane.rowIndex="3">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#zeroOrder" text="Zero Order Hold" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                                        <Button mnemonicParsing="false" onAction="#firstOrder" text="First Order Hold" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
+                                        <Button mnemonicParsing="false" onAction="#zeroOrder" text="Zero Order Hold" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"/>
+                                        <Button mnemonicParsing="false" onAction="#firstOrder" text="First Order Hold" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"/>
                                     </children>
                                 </GridPane>
-                                <Button mnemonicParsing="false" onAction="#zeroOrderNormalized" text="Zero Order z Zaokrąglaniem" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                <Button mnemonicParsing="false" onAction="#zeroOrderNormalized" text="Zero Order z Zaokrąglaniem" GridPane.halignment="CENTER" GridPane.rowIndex="4"/>
                                 <GridPane GridPane.rowIndex="8">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#addToGroup" text="Dodaj do grupy" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#clearGroup" text="Wyczyść grupę" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                                        <Button mnemonicParsing="false" onAction="#showGroupOfDiagrams" text="Wyświetl" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                                        <Text fx:id="groupCountDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="liczba diagramów: 0" GridPane.columnIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#addToGroup" text="Dodaj do grupy" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#clearGroup" text="Wyczyść grupę" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+                                        <Button mnemonicParsing="false" onAction="#showGroupOfDiagrams" text="Wyświetl" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP"/>
+                                        <Text fx:id="groupCountDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="liczba diagramów: 0" GridPane.columnIndex="1"/>
                                     </children>
                                 </GridPane>
-                                <Button mnemonicParsing="false" onAction="#sinc" text="sinc()" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+                                <Button mnemonicParsing="false" onAction="#sinc" text="sinc()" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP"/>
                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Wyświetlanie wielu diagramów:" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
                                     <GridPane.margin>
-                                        <Insets left="10.0" />
+                                        <Insets left="10.0"/>
                                     </GridPane.margin>
                                 </Text>
                                 <GridPane GridPane.rowIndex="6">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#compare" text="Porównaj Diagramy" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
-                                        <Text fx:id="meanSquareErrorDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Błąd średniokwadratowy: " GridPane.rowIndex="1" />
-                                        <Text fx:id="signalToNoiseRatioDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Stosunek sygnał - szum: " GridPane.rowIndex="2" />
-                                        <Text fx:id="maxSignalToNoiseRatioDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Szczytowy stosunek sygnał - szum: " GridPane.rowIndex="3" />
-                                        <Text fx:id="maxErrorDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Maksymalna różnica: " GridPane.rowIndex="4" />
+                                        <Button mnemonicParsing="false" onAction="#compare" text="Porównaj Diagramy" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM"/>
+                                        <Text fx:id="meanSquareErrorDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Błąd średniokwadratowy: " GridPane.rowIndex="1"/>
+                                        <Text fx:id="signalToNoiseRatioDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Stosunek sygnał - szum: " GridPane.rowIndex="2"/>
+                                        <Text fx:id="maxSignalToNoiseRatioDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Szczytowy stosunek sygnał - szum: " GridPane.rowIndex="3"/>
+                                        <Text fx:id="maxErrorDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Maksymalna różnica: " GridPane.rowIndex="4"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#truncatedQuantization" text="Kwantyzacja z Obcięciem" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#roundingQuantization" text="Kwantyzacja z Zaokrąglaniem" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#truncatedQuantization" text="Kwantyzacja z Obcięciem" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#roundingQuantization" text="Kwantyzacja z Zaokrąglaniem" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
                                     </children>
                                 </GridPane>
                             </children>
@@ -508,54 +508,54 @@
             <content>
                 <GridPane layoutX="249.0" layoutY="176.0">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
                     <children>
                         <GridPane>
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" percentHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0" />
+                                <ListView fx:id="listView2" prefHeight="200.0" prefWidth="200.0"/>
                                 <GridPane GridPane.rowIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#showSelectedDiagram2" text="Podgląd Diagramu" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#deleteSelectedDiagram2" text="Usuń Diagram" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#saveDiagrams" text="Zapisz" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                        <Button mnemonicParsing="false" onAction="#loadDiagrams" text="Wczytaj" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#showSelectedDiagram2" text="Podgląd Diagramu" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#deleteSelectedDiagram2" text="Usuń Diagram" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#saveDiagrams" text="Zapisz" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                                        <Button mnemonicParsing="false" onAction="#loadDiagrams" text="Wczytaj" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#changeName2" text="Zmień nazwę" GridPane.halignment="CENTER" />
+                                        <Button mnemonicParsing="false" onAction="#changeName2" text="Zmień nazwę" GridPane.halignment="CENTER"/>
                                         <TextField fx:id="newNameField2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                             <GridPane.margin>
-                                                <Insets left="10.0" right="10.0" />
+                                                <Insets left="10.0" right="10.0"/>
                                             </GridPane.margin>
                                         </TextField>
                                     </children>
@@ -564,308 +564,325 @@
                         </GridPane>
                         <GridPane GridPane.columnIndex="1">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <GridPane>
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <Text fx:id="firstDiagramName2" strokeType="OUTSIDE" strokeWidth="0.0" text="1 diagram" GridPane.valignment="TOP">
                                             <GridPane.margin>
-                                                <Insets left="20.0" top="5.0" />
+                                                <Insets left="20.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Button mnemonicParsing="false" onAction="#setDiagram12" text="Wybierz Diagram" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" />
+                                                <Insets bottom="5.0"/>
                                             </GridPane.margin>
                                         </Button>
                                         <Text fx:id="secondDiagramName2" strokeType="OUTSIDE" strokeWidth="0.0" text="2 diagram" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                             <GridPane.margin>
-                                                <Insets left="20.0" top="5.0" />
+                                                <Insets left="20.0" top="5.0"/>
                                             </GridPane.margin>
                                         </Text>
                                         <Button mnemonicParsing="false" onAction="#setDiagram22" text="Wybierz Diagram" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets bottom="5.0" />
+                                                <Insets bottom="5.0"/>
                                             </GridPane.margin>
                                         </Button>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
-                                        <Button mnemonicParsing="false" onAction="#entangle" text="Splot" GridPane.halignment="CENTER" />
-                                        <Button mnemonicParsing="false" onAction="#correlation" text="Korelacja" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#entangle" text="Splot" GridPane.halignment="CENTER"/>
+                                        <Button mnemonicParsing="false" onAction="#correlation" text="Korelacja" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <GridPane>
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="k" GridPane.valignment="BOTTOM">
                                                     <GridPane.margin>
-                                                        <Insets left="10.0" />
+                                                        <Insets left="10.0"/>
                                                     </GridPane.margin>
                                                 </Text>
                                                 <TextField fx:id="kField" text="10" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                                     <GridPane.margin>
-                                                        <Insets left="10.0" right="10.0" />
+                                                        <Insets left="10.0" right="10.0"/>
                                                     </GridPane.margin>
                                                 </TextField>
                                             </children>
                                         </GridPane>
                                         <GridPane GridPane.rowIndex="1">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="M" GridPane.valignment="BOTTOM">
                                                     <GridPane.margin>
-                                                        <Insets left="10.0" />
+                                                        <Insets left="10.0"/>
                                                     </GridPane.margin>
                                                 </Text>
                                                 <TextField fx:id="mField" text="11" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                                     <GridPane.margin>
-                                                        <Insets left="10.0" right="10.0" />
+                                                        <Insets left="10.0" right="10.0"/>
                                                     </GridPane.margin>
                                                 </TextField>
                                             </children>
                                         </GridPane>
                                         <GridPane GridPane.rowIndex="2">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="55.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="55.0" prefWidth="100.0"/>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#lowPassFilter" text="Filtr Dolnoprzepustowy" GridPane.halignment="CENTER" />
-                                                <Button mnemonicParsing="false" onAction="#showH" text="Wyświetl h" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                                <Button mnemonicParsing="false" onAction="#highPassFilter" text="Filtr Górnoprzepustowy" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                                <Button mnemonicParsing="false" onAction="#showHighH" text="Wyświetl h" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                                <Button mnemonicParsing="false" onAction="#lowPassFilter" text="Filtr Dolnoprzepustowy" GridPane.halignment="CENTER"/>
+                                                <Button mnemonicParsing="false" onAction="#showH" text="Wyświetl h" GridPane.columnIndex="1" GridPane.halignment="CENTER"/>
+                                                <Button mnemonicParsing="false" onAction="#highPassFilter" text="Filtr Górnoprzepustowy" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
+                                                <Button mnemonicParsing="false" onAction="#showHighH" text="Wyświetl h" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
                                                 <CheckBox fx:id="blackManBtn" mnemonicParsing="false" text="Okno Blackmana" GridPane.rowIndex="2">
                                                     <GridPane.margin>
-                                                        <Insets left="10.0" />
+                                                        <Insets left="10.0"/>
                                                     </GridPane.margin>
                                                 </CheckBox>
-                                                <Button mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                                <Button mnemonicParsing="false" onAction="#addListItem" text="Zapisz Diagram" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2"/>
                                             </children>
                                         </GridPane>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="3">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <TextField fx:id="probeSignalLength" text="50" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets left="10.0" right="10.0" />
+                                                <Insets left="10.0" right="10.0"/>
                                             </GridPane.margin>
                                         </TextField>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Długość okresu [ms]" GridPane.valignment="BOTTOM">
                                             <GridPane.margin>
-                                                <Insets bottom="30.0" left="10.0" />
+                                                <Insets bottom="30.0" left="10.0"/>
                                             </GridPane.margin>
                                         </Text>
-                                        <Button mnemonicParsing="false" onAction="#generateExampleProbeSignal" text="Przykładowy Sygnał Sondujący" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                        <Button mnemonicParsing="false" onAction="#generateExampleProbeSignal" text="Przykładowy Sygnał Sondujący" GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
                                     </children>
                                 </GridPane>
                             </children>
                         </GridPane>
                         <GridPane GridPane.columnIndex="2">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" percentHeight="55.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" percentHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <Text fx:id="probeSignalName" strokeType="OUTSIDE" strokeWidth="0.0" text="Sygnał Sondujący (podaj 1 pełen okres)" GridPane.valignment="TOP">
                                     <GridPane.margin>
-                                        <Insets left="20.0" top="5.0" />
+                                        <Insets left="20.0" top="5.0"/>
                                     </GridPane.margin>
                                 </Text>
                                 <Button mnemonicParsing="false" onAction="#setProbeSignal" text="Wybierz Diagram" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                                     <GridPane.margin>
-                                        <Insets bottom="5.0" />
+                                        <Insets bottom="5.0"/>
                                     </GridPane.margin>
                                 </Button>
                                 <GridPane GridPane.rowIndex="1">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
                                         <GridPane>
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rozmiar buffora" GridPane.valignment="BOTTOM">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin></Text>
-                                                <TextField fx:id="bufferSizeField" text="30" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin></TextField>
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0"/>
+                                                    </GridPane.margin>
+                                                </Text>
+                                                <TextField fx:id="bufferSizeField" text="100" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0" right="10.0"/>
+                                                    </GridPane.margin>
+                                                </TextField>
                                             </children>
                                         </GridPane>
                                         <GridPane GridPane.rowIndex="1">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Częstotliwość próbkowania [x/s]" GridPane.valignment="BOTTOM">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin></Text>
-                                                <TextField fx:id="probingFrequencyField" text="111" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin></TextField>
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0"/>
+                                                    </GridPane.margin>
+                                                </Text>
+                                                <TextField fx:id="probingFrequencyField" text="1111" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0" right="10.0"/>
+                                                    </GridPane.margin>
+                                                </TextField>
                                             </children>
                                         </GridPane>
                                         <GridPane GridPane.rowIndex="2">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dystans [m]" GridPane.valignment="BOTTOM">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin></Text>
-                                                <TextField fx:id="distanceField" text="5" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin></TextField>
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0"/>
+                                                    </GridPane.margin>
+                                                </Text>
+                                                <TextField fx:id="distanceField" text="20" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0" right="10.0"/>
+                                                    </GridPane.margin>
+                                                </TextField>
                                             </children>
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
+                                            <GridPane.margin>
+                                                <Insets/>
+                                            </GridPane.margin>
                                         </GridPane>
                                         <GridPane GridPane.rowIndex="3">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prędkość rozchodzenia się sygnału [m/s]" GridPane.valignment="BOTTOM">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin></Text>
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0"/>
+                                                    </GridPane.margin>
+                                                </Text>
                                                 <TextField fx:id="signalSpeedField" text="1000" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin></TextField>
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0" right="10.0"/>
+                                                    </GridPane.margin>
+                                                </TextField>
                                             </children>
                                         </GridPane>
                                         <GridPane GridPane.rowIndex="4">
                                             <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
                                             </rowConstraints>
                                             <children>
                                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prędkość przedmiotu [m/s]" GridPane.valignment="BOTTOM">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" />
-                                       </GridPane.margin></Text>
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0"/>
+                                                    </GridPane.margin>
+                                                </Text>
                                                 <TextField fx:id="objectSpeedField" text="0" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets left="10.0" right="10.0" />
-                                       </GridPane.margin></TextField>
+                                                    <GridPane.margin>
+                                                        <Insets left="10.0" right="10.0"/>
+                                                    </GridPane.margin>
+                                                </TextField>
                                             </children>
                                         </GridPane>
-                                        <Button mnemonicParsing="false" onAction="#showReflection" text="Pokarz Odbicie" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                                        <Button mnemonicParsing="false" onAction="#radarSymulation" text="Symulacja Radaru" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                                        <Button mnemonicParsing="false" onAction="#radarSimulation" text="Symulacja Radaru" GridPane.halignment="CENTER" GridPane.rowIndex="5"/>
+                                        <Button mnemonicParsing="false" onAction="#showReflection" text="Pokarz Odbicie" GridPane.halignment="CENTER" GridPane.rowIndex="6"/>
+                                        <Button mnemonicParsing="false" onAction="#showSentSignal" text="Pokarz Wysłany Sygnał" GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
                                     </children>
                                 </GridPane>
                                 <GridPane GridPane.rowIndex="2">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
                                     <children>
+                                        <Text fx:id="distanceDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Odległość = ">
+                                            <GridPane.margin>
+                                                <Insets left="10.0"/>
+                                            </GridPane.margin>
+                                        </Text>
                                     </children>
                                 </GridPane>
                             </children>

@@ -20,7 +20,6 @@ import static java.lang.Math.*;
 
 public class Controller implements Initializable {
     public static int ACC = 1000;
-    public static int HIGH_ACC = 20000;
     public static String SAVE_FILE_PATH = "diagrams.bin";
 
     public static ArrayList<Diagram> listOfDiagrams = new ArrayList<>();
@@ -31,6 +30,7 @@ public class Controller implements Initializable {
     private Diagram first2 = null;
     private Diagram second2 = null;
     private Diagram probeSignal = null;
+    RadarSimulation radarSimulation = null;
 
     //tab1
     public ToggleGroup function;
@@ -91,6 +91,7 @@ public class Controller implements Initializable {
     public TextField distanceField;
     public TextField signalSpeedField;
     public TextField objectSpeedField;
+    public Text distanceDisplay;
 
 
     @Override
@@ -743,7 +744,7 @@ public class Controller implements Initializable {
 
     //radar
     public void generateExampleProbeSignal() {
-        Diagram newDiagram = new Diagram(Calculator.generateExampleProbeSignal(HIGH_ACC, Double.parseDouble(probeSignalLength.getText())), Diagram.DiagramType.LINE, "sygnał sondujący");
+        Diagram newDiagram = new Diagram(Calculator.generateExampleProbeSignal(ACC, Double.parseDouble(probeSignalLength.getText())), Diagram.DiagramType.LINE, "sygnał sondujący");
         addDiagramToLists(newDiagram);
     }
 
@@ -755,47 +756,38 @@ public class Controller implements Initializable {
         }
     }
 
-    public void showReflection() {
-        Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
-        if (diagram != null) {
-            Diagram newDiagram = new Diagram(Calculator.reflection(
-                    diagram.getPoints(),
-                    Double.parseDouble(bufferSizeField.getText()),
+
+    public void radarSimulation() {
+        if (probeSignal != null) {
+            radarSimulation = new RadarSimulation(
+                    probeSignal.getPoints(),
+                    Integer.parseInt(bufferSizeField.getText()),
                     Double.parseDouble(probingFrequencyField.getText()),
                     Double.parseDouble(distanceField.getText()),
                     Double.parseDouble(signalSpeedField.getText()),
-                    Double.parseDouble(objectSpeedField.getText())),
-                    Diagram.DiagramType.LINE, "odbicie");
-            addDiagramToLists(newDiagram);
+                    Double.parseDouble(objectSpeedField.getText()));
+
+            distanceDisplay.setText("Odległość = " + radarSimulation.getDistance());
+
+            currentDiagram = new Diagram(Calculator.correlation(radarSimulation.getSentSignal(), radarSimulation.getReflectedSignal()),
+                    Diagram.DiagramType.LINE, "radar");
+            displayDiagram(currentDiagram);
         }
-
-
-
-//        double[][] x = new double[4][2];
-//        double[][] y = new double[3][2];
-//        for(double[] d : x){
-//            d[0] = 0;
-//        }
-//        for(double[] d : y){
-//            d[0] = 0;
-//        }
-//        x[0][1] = 5;
-//        x[1][1] = 2;
-//        x[2][1] = 4;
-//        x[3][1] = 1;
-//        y[0][1] = 3;
-//        y[1][1] = 1;
-//        y[2][1] = 7;
-//
-//        double[][] z =Calculator.correlation(x,y);
-//
-//        System.out.println(Arrays.deepToString(z));
-
     }
 
-    public void radarSymulation() {
-        //TODO
+    public void showReflection() {
+        if (radarSimulation != null) {
+            currentDiagram = new Diagram(radarSimulation.getReflectedSignal(),
+                    Diagram.DiagramType.LINE, "odbicie");
+            displayDiagram(currentDiagram);
+        }
+    }
+
+    public void showSentSignal(ActionEvent actionEvent) {
+        if (radarSimulation != null) {
+            currentDiagram = new Diagram(radarSimulation.getSentSignal(),
+                    Diagram.DiagramType.LINE, "odbicie");
+            displayDiagram(currentDiagram);
+        }
     }
 }
-//5 2 4 1
-//3 1 7

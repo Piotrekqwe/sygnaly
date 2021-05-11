@@ -358,12 +358,12 @@ public class Calculator {
         double[][] result = new double[signal1.length + signal2.length - 1][2];
         double start = signal1[0][0];
         double end = signal1[signal1.length - 1][0];
-        if(signal1[0][0] > signal2[0][0]){
-            start = signal2[0][0];
-        }
-        if(signal1[signal1.length - 1][0] < signal2[signal2.length - 1][0]){
-            end = signal2[signal2.length - 1][0];
-        }
+        //if(signal1[0][0] > signal2[0][0]){
+        //    start = signal2[0][0];
+        //}
+        //if(signal1[signal1.length - 1][0] < signal2[signal2.length - 1][0]){
+        //    end = signal2[signal2.length - 1][0];
+        //}
 
         for (int i = 0; i < result.length; i++) {
             result[i][0] = ((result.length - i) * start + i * end) / result.length;
@@ -431,52 +431,5 @@ public class Calculator {
                     13 * sin(PI / (length / 4) * points[i][0]);
         }
         return points;
-    }
-
-    public static double[][] reflection(double[][] signal, double bufferSize, double probingFrequency, double distance, double signalSpeed, double objectSpeed){
-        //TODO
-
-
-        double[][] result = new double[signal.length][2];
-
-
-
-        return result;
-
-
-
-
-//        double[][] result = new double[signal.length][2];
-//        double max = signal[0][1];
-//        double min = max;
-//
-//        for(int i = 1; i < signal.length; i++) {
-//            if(signal[i][1] > max){ max = signal[i][1];}
-//            else if (signal[i][1] < min){ min = signal[i][1];}
-//        }
-//
-//        double distancems = distance;// / 299792;
-//        int delay = 0;
-//
-//        while(signal[signal.length - 1][0] < distancems){
-//            distancems -= signal[signal.length - 1][0];
-//        }
-//
-//        while(signal[delay][0] < distancems){
-//            delay++;
-//        }
-//
-//        double[][] noise = szumGaussowski((max - min) / 20, 0, 0, signal.length);
-//
-//        for(int i = 0; i < delay; i++){
-//            result[i][0] = signal[i][0];
-//            result[i][1] = signal[signal.length - delay + i][1] + noise[i][1];
-//        }
-//
-//        for(int i = 0; i + delay < signal.length; i++){
-//            result[i + delay][0] = signal[i + delay][0];
-//            result[i + delay][1] = signal[i][1] + noise[i + delay][1];
-//        }
-//        return result;
     }
 }
