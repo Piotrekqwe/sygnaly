@@ -771,7 +771,6 @@ public class Controller implements Initializable {
 
             currentDiagram = new Diagram(Calculator.correlation(radarSimulation.getSentSignal(), radarSimulation.getReflectedSignal()),
                     Diagram.DiagramType.LINE, "radar");
-            displayDiagram(currentDiagram);
         }
     }
 
@@ -786,7 +785,7 @@ public class Controller implements Initializable {
     public void showSentSignal(ActionEvent actionEvent) {
         if (radarSimulation != null) {
             currentDiagram = new Diagram(radarSimulation.getSentSignal(),
-                    Diagram.DiagramType.LINE, "odbicie");
+                    Diagram.DiagramType.LINE, "wysłany sygnał");
             displayDiagram(currentDiagram);
         }
     }

@@ -1,5 +1,7 @@
 package pl.kw;
 
+import java.util.Calendar;
+
 public class RadarSimulation {
     private double[][] sentSignal;
     private double[][] reflectedSignal;
@@ -26,7 +28,16 @@ public class RadarSimulation {
         double step = probingTime / (signal[signal.length - 1][0] / signal.length);
         double iter;
         int num;
-        //TODO: do something with objectSpeed XD
+        double objectSpeedMultiplier = 1 + objectSpeed / signalSpeed;
+
+        double maxValue = signal[0][1];
+        double minValue = maxValue;
+        for(int i = 1; i < signal.length; i++) {
+            if(signal[i][1] > maxValue){ maxValue = signal[i][1];}
+            else if (signal[i][1] < minValue){ minValue = signal[i][1];}
+        }
+
+        double[][] noise = Calculator.szumGaussowski((maxValue - minValue) / 20, 0, 0, bufferSize);
 
         while(delayStep < 0){
             delayStep += signal.length;
@@ -34,10 +45,9 @@ public class RadarSimulation {
 
         for(int i = 0; i < bufferSize; i++){
             reflectedSignal[i][0] = probingTime * i;
-            iter = (delayStep + step * i);
+            iter = (delayStep + step * i * objectSpeedMultiplier);
             num = (int) iter;
-            reflectedSignal[i][1] = signal[num % signal.length][1] * (iter - num) + signal[(num + 1) % signal.length][1] * (num + 1 - iter);
-            //TODO: add noise
+            reflectedSignal[i][1] = signal[num % signal.length][1] * (iter - num) + signal[(num + 1) % signal.length][1] * (num + 1 - iter) + noise[i][1];
 
             sentSignal[i][0] = probingTime * i;
             iter = (step * i);
@@ -52,7 +62,6 @@ public class RadarSimulation {
             if(correlatedSignal[max][1] < correlatedSignal[i][1]) max = i;
         }
 
-        //TODO: distance is about 50~55 times bigger than it should
-        distance = signalSpeed * (correlatedSignal.length / 2 - max) * (signal[signal.length - 1][0] / signal.length) / 2;
+        distance = signalSpeed * (correlatedSignal.length / 2 - max) * (signal[signal.length - 1][0] / signal.length) / 110;
     }
 }
