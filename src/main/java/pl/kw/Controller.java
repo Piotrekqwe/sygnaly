@@ -546,14 +546,14 @@ public class Controller implements Initializable {
         Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             first = diagram;
-            secondDiagramName2.setText(first.toString());
+            firstDiagramName.setText(first.toString());
         }
     }
     public void setDiagram2() {
         Diagram diagram = (Diagram) listView.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             second = diagram;
-            secondDiagramName2.setText(second.toString());
+            secondDiagramName.setText(second.toString());
         }
     }
     public void addAction() {
@@ -692,7 +692,7 @@ public class Controller implements Initializable {
         Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             first2 = diagram;
-            secondDiagramName2.setText(first2.toString());
+            firstDiagramName2.setText(first2.toString());
         }
     }
     public void setDiagram22() {
