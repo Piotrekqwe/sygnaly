@@ -93,6 +93,9 @@ public class Controller implements Initializable {
     public TextField objectSpeedField;
     public Text distanceDisplay;
 
+    //tab4
+    public ListView listView3;
+    public TextField newNameField3;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -436,6 +439,12 @@ public class Controller implements Initializable {
             displayDiagram(diagram);
         }
     }
+    public void showSelectedDiagram3() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            displayDiagram(diagram);
+        }
+    }
 
     //histogram functions
     public void showCurrentHistogram() {
@@ -450,17 +459,20 @@ public class Controller implements Initializable {
 
     //list functions
     public void refreshLists() {
-        listView.getItems().removeAll(listView.getItems());
-        listView2.getItems().removeAll(listView2.getItems());
+        listView.getItems().clear();
+        listView2.getItems().clear();
+        listView3.getItems().clear();
         for (Diagram d : listOfDiagrams) {
             listView.getItems().add(d);
             listView2.getItems().add(d);
+            listView3.getItems().add(d);
         }
     }
     public void addDiagramToLists(Diagram diagram) {
         listOfDiagrams.add(diagram);
         listView.getItems().add(diagram);
         listView2.getItems().add(diagram);
+        listView3.getItems().add(diagram);
     }
     public void addListItem() {
         if (currentDiagram != null) {
@@ -474,6 +486,10 @@ public class Controller implements Initializable {
     }
     public void deleteSelectedDiagram2() {
         listOfDiagrams.remove(listView2.getSelectionModel().getSelectedItem());
+        refreshLists();
+    }
+    public void deleteSelectedDiagram3() {
+        listOfDiagrams.remove(listView3.getSelectionModel().getSelectedItem());
         refreshLists();
     }
     public void saveDiagrams() {
@@ -495,11 +511,19 @@ public class Controller implements Initializable {
         ((Diagram) listView.getSelectionModel().getSelectedItem()).name = newNameField.getText();
         listView.refresh();
         listView2.refresh();
+        listView3.refresh();
     }
     public void changeName2() {
         ((Diagram) listView2.getSelectionModel().getSelectedItem()).name = newNameField2.getText();
         listView.refresh();
         listView2.refresh();
+        listView3.refresh();
+    }
+    public void changeName3() {
+        ((Diagram) listView3.getSelectionModel().getSelectedItem()).name = newNameField3.getText();
+        listView.refresh();
+        listView2.refresh();
+        listView3.refresh();
     }
 
     //additional functions
@@ -747,7 +771,6 @@ public class Controller implements Initializable {
         Diagram newDiagram = new Diagram(Calculator.generateExampleProbeSignal(ACC, Double.parseDouble(probeSignalLength.getText())), Diagram.DiagramType.LINE, "sygnał sondujący");
         addDiagramToLists(newDiagram);
     }
-
     public void setProbeSignal() {
         Diagram diagram = (Diagram) listView2.getSelectionModel().getSelectedItem();
         if (diagram != null) {
@@ -755,8 +778,6 @@ public class Controller implements Initializable {
             probeSignalName.setText(probeSignal.toString());
         }
     }
-
-
     public void radarSimulation() {
         if (probeSignal != null) {
             radarSimulation = new RadarSimulation(
@@ -773,7 +794,6 @@ public class Controller implements Initializable {
                     Diagram.DiagramType.LINE, "radar");
         }
     }
-
     public void showReflection() {
         if (radarSimulation != null) {
             currentDiagram = new Diagram(radarSimulation.getReflectedSignal(),
@@ -781,12 +801,29 @@ public class Controller implements Initializable {
             displayDiagram(currentDiagram);
         }
     }
-
-    public void showSentSignal(ActionEvent actionEvent) {
+    public void showSentSignal() {
         if (radarSimulation != null) {
             currentDiagram = new Diagram(radarSimulation.getSentSignal(),
                     Diagram.DiagramType.LINE, "wysłany sygnał");
             displayDiagram(currentDiagram);
         }
     }
+
+    //DFT
+    public void dft() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            //currentDiagram = new Diagram(Calculator.dft(diagram.getPoints()), Diagram.DiagramType.LINE, "wynik dyskretnej transformaty fouriera");
+            currentDiagram = Calculator.dft(diagram.getPoints(), "wynik dyskretnej transformaty fouriera");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void unDft() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null && diagram instanceof DftDiagram) {
+            currentDiagram = new Diagram(Calculator.unDft((DftDiagram) diagram), Diagram.DiagramType.LINE, "wynik odwrotnej dyskretnej transformaty fouriera");
+            displayDiagram(currentDiagram);
+        }
+    }
+
 }

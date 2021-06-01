@@ -18,7 +18,6 @@ public class Calculator {
         }
         return points;
     }
-
     public static double[][] szumGaussowski(double normalna, double czasP, double dlugosc, int acc) {
         double[][] points = new double[acc][2];
         Random r = new Random();
@@ -29,7 +28,6 @@ public class Calculator {
         }
         return points;
     }
-
     public static double[][] sinusoida(double amplituda, double czasP, double dlugosc, double okres, int acc) {
         double[][] points = new double[acc][2];
 
@@ -39,7 +37,6 @@ public class Calculator {
         }
         return points;
     }
-
     public static double[][] prostokatny(double max, double min, double czasP, double dlugosc, double okres, double wypelnienie, int acc) {
         double[][] points = new double[acc][2];
 
@@ -53,7 +50,6 @@ public class Calculator {
         }
         return points;
     }
-
     public static double[][] trojkatny(double amplituda, double czasP, double dlugosc, double okres, double wygiecie, int acc) {
         double[][] points = new double[acc][2];
 
@@ -67,7 +63,6 @@ public class Calculator {
         }
         return points;
     }
-
     public static double[][] skok(double max, double min, double czasP, double dlugosc, double czasSkoku, int acc) {
         double[][] points = new double[acc][2];
 
@@ -81,7 +76,6 @@ public class Calculator {
         }
         return points;
     }
-
     public static double[][] impulsJednostkowy(double max, double min, double czasP, double dlugosc, double nrImpulsu, int acc) {
         double[][] points = new double[acc][2];
 
@@ -95,7 +89,6 @@ public class Calculator {
         }
         return points;
     }
-
     public static double[][] szumImpulsowy(double max, double min, double czasP, double dlugosc, double chance, int acc) {
         double[][] points = new double[acc][2];
         Random r = new Random();
@@ -429,6 +422,36 @@ public class Calculator {
             points[i][0] = (double) i * length / acc;
             points[i][1] = 10 * sin(PI / (length / 6) * points[i][0]) +
                     13 * sin(PI / (length / 4) * points[i][0]);
+        }
+        return points;
+    }
+
+    public static DftDiagram dft(double[][] signal, String name) {
+        double[][] points = new double[signal.length][2];
+        for(int i = 0; i < signal.length; i++){
+            double val = signal[i][1];
+            double angle = 2 * PI * i / signal.length;
+            points[i][0] = val * cos(angle);
+            points[i][1] = val * sin(angle);
+        }
+
+
+        DftDiagram diagram = new DftDiagram(points, Diagram.DiagramType.LINE, name, signal[signal.length - 1][0] - signal[0][0]);
+        return diagram;
+    }
+
+    public static double[][] unDft(DftDiagram diagram) {
+        double[][] points = new double[diagram.getPoints().length][2];
+        for(int i = 0; i < diagram.getPoints().length; i++){
+            points[i][0] = i * diagram.getLength() / diagram.getPoints().length;
+            double angle = 2 * PI * i / diagram.getPoints().length;
+            if(sin(angle) > sqrt(2) / 2 || sin(angle) < sqrt(2) / -2){
+                points[i][1] = diagram.getPoints()[i][1] / sin(angle);
+            }
+            else {
+                points[i][1] = diagram.getPoints()[i][0] / cos(angle);
+            }
+            //points[i][1] = sqrt(pow(diagram.getPoints()[i][0], 2) + pow(diagram.getPoints()[i][1], 2));
         }
         return points;
     }
