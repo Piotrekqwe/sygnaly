@@ -7,6 +7,7 @@ import static java.lang.Math.*;
 
 
 public class Calculator {
+    private Calculator() {}
 
     public static double[][] szumJednostajny(double range, double czasP, double dlugosc, int acc) {
         double[][] points = new double[acc][2];
@@ -425,34 +426,119 @@ public class Calculator {
         }
         return points;
     }
-
-    public static DftDiagram dft(double[][] signal, String name) {
+    public static double[] pointValue(DftDiagram diagram){
+        double[] values = new double[]{0, 0};
+        for (double[] point : diagram.getPoints()) {
+            values[0] += point[0];
+            values[1] += point[1];
+        }
+        values[0] /= diagram.getPoints().length;
+        values[1] /= diagram.getPoints().length;
+        return values;
+    }
+    public static DftDiagram simpleDft(double[][] signal, double period, String name) {
         double[][] points = new double[signal.length][2];
+        double angleMultiplier = 2 * PI / period;
         for(int i = 0; i < signal.length; i++){
             double val = signal[i][1];
-            double angle = 2 * PI * i / signal.length;
+            double angle = signal[i][0] * angleMultiplier;
             points[i][0] = val * cos(angle);
             points[i][1] = val * sin(angle);
         }
 
 
-        DftDiagram diagram = new DftDiagram(points, Diagram.DiagramType.LINE, name, signal[signal.length - 1][0] - signal[0][0]);
+        DftDiagram diagram = new DftDiagram(points, Diagram.DiagramType.LINE, name, signal[signal.length - 1][0] - signal[0][0], period);
         return diagram;
     }
-
-    public static double[][] unDft(DftDiagram diagram) {
+    public static double[][] simpleIDft(DftDiagram diagram) {
         double[][] points = new double[diagram.getPoints().length][2];
-        for(int i = 0; i < diagram.getPoints().length; i++){
+        double angleMultiplier = 2 * PI * diagram.getLength() / diagram.getPeriod() / diagram.getPoints().length;
+        for (int i = 0; i < diagram.getPoints().length; i++) {
             points[i][0] = i * diagram.getLength() / diagram.getPoints().length;
-            double angle = 2 * PI * i / diagram.getPoints().length;
-            if(sin(angle) > sqrt(2) / 2 || sin(angle) < sqrt(2) / -2){
+            double angle = angleMultiplier * i;
+            if (sin(angle) > sqrt(2) / 2 || sin(angle) < sqrt(2) / -2) {
                 points[i][1] = diagram.getPoints()[i][1] / sin(angle);
-            }
-            else {
+            } else {
                 points[i][1] = diagram.getPoints()[i][0] / cos(angle);
             }
             //points[i][1] = sqrt(pow(diagram.getPoints()[i][0], 2) + pow(diagram.getPoints()[i][1], 2));
         }
         return points;
     }
+    public static double[][] fullDft(double[][] signal, double maxPeriods, int acc){
+        double[][] points = new double[acc][2];
+        double step = acc * (signal[signal.length - 1][0] - signal[0][0]) / maxPeriods;
+        double timeStep = maxPeriods / acc;
+        for(int i = 0; i < acc; i++){
+            points[i][0] = i * timeStep;
+            double period = step / i;
+            double[] values = pointValue(simpleDft(signal, period, ""));
+            points[i][1] = values[1];
+        }
+
+
+        return points;
+    }
+
+    public static final double[] db4h = new double[]{0.2303778133, 0.7148465706, 0.6308807679, -0.0279837694, -0.1870348117, 0.0308413818, 0.0328830117, -0.0105974018};
+    public static final double[] db4g = new double[]{-0.0105974018, -0.0328830117, 0.0308413818, 0.1870348117, -0.0279837694, -0.6308807679, 0.7148465706, -0.2303778133};
+
+
+    private static double singleWavelet(int index, double[][] signal, double[] arr) {
+        double sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int num = (index - i);
+            if(num < 0) num += signal.length;
+            sum += signal[num][1] * arr[i];
+        }
+        return sum;
+    }
+    public static double[][] waveletTransform(double[][] signal){
+        double[][] result = new double[signal.length][2];
+
+        for (int i = 0; i < signal.length; i++) {
+            result[i][0] = signal[i][0];
+            if(i % 2 == 0){
+                result[i][1] = singleWavelet(i, signal, db4g);
+            }
+            else {
+                result[i][1] = singleWavelet(i, signal, db4h);
+            }
+        }
+
+        return result;
+    }
+
+    public static double[][] exampleSignal1(int acc){
+        double[][] points = new double[acc][2];
+
+        for(int i = 0; i < acc; i++) {
+            points[i][0] = (double) 8 * i / acc;
+            points[i][1] = 2 * sin(PI * points[i][0] + PI / 2) +
+                    5 * sin(4 * PI * points[i][0] + PI / 2);
+        }
+        return points;
+    }
+    public static double[][] exampleSignal2(int acc){
+        double[][] points = new double[acc][2];
+
+        for(int i = 0; i < acc; i++) {
+            points[i][0] = (double) 8 * i / acc;
+            points[i][1] = 2 * sin(PI * points[i][0]) +
+                    sin(2 * PI * points[i][0]) +
+                    5 * sin(4 * PI * points[i][0]);
+        }
+        return points;
+    }
+    public static double[][] exampleSignal3(int acc){
+        double[][] points = new double[acc][2];
+
+        for(int i = 0; i < acc; i++) {
+            points[i][0] = (double) 8 * i / acc;
+            points[i][1] = 5 * sin(PI * points[i][0]) +
+                    sin(8 * PI * points[i][0]);
+        }
+        return points;
+    }
+
 }

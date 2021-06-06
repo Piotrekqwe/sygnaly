@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
+import org.apache.commons.math3.complex.Complex;
 
 import java.io.*;
 import java.net.URL;
@@ -19,7 +20,7 @@ import static java.lang.Math.*;
 
 
 public class Controller implements Initializable {
-    public static int ACC = 1000;
+    public static int ACC = 1024;
     public static String SAVE_FILE_PATH = "diagrams.bin";
 
     public static ArrayList<Diagram> listOfDiagrams = new ArrayList<>();
@@ -29,6 +30,8 @@ public class Controller implements Initializable {
     private Diagram second = null;
     private Diagram first2 = null;
     private Diagram second2 = null;
+    private Diagram real = null;
+    private Diagram imaginary = null;
     private Diagram probeSignal = null;
     RadarSimulation radarSimulation = null;
 
@@ -96,6 +99,8 @@ public class Controller implements Initializable {
     //tab4
     public ListView listView3;
     public TextField newNameField3;
+    public Text realDiagramName;
+    public Text imaginaryDiagramName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -726,7 +731,6 @@ public class Controller implements Initializable {
             secondDiagramName2.setText(second2.toString());
         }
     }
-
     public void entangle() {
         if (first2 != null && second2 != null) {
             currentDiagram = new Diagram(Calculator.entanglement(first2.getPoints(), second2.getPoints()), Diagram.DiagramType.LINE, "splot");
@@ -809,21 +813,88 @@ public class Controller implements Initializable {
         }
     }
 
+    public TextField testValueField;
+    public Text testText;
+
     //DFT
     public void dft() {
         Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
         if (diagram != null) {
-            //currentDiagram = new Diagram(Calculator.dft(diagram.getPoints()), Diagram.DiagramType.LINE, "wynik dyskretnej transformaty fouriera");
-            currentDiagram = Calculator.dft(diagram.getPoints(), "wynik dyskretnej transformaty fouriera");
+            //currentDiagram = new Diagram(Calculator.dft(diagram.getPoints()), Diagram.DiagramType.LINE, "wynik transformaty fouriera");
+            currentDiagram = Calculator.simpleDft(diagram.getPoints(), (diagram.getPoints()[diagram.getPoints().length - 1][0] - diagram.getPoints()[0][0]) /
+                    Double.parseDouble(testValueField.getText()),"wynik transformaty fouriera");
+            double[] values = Calculator.pointValue((DftDiagram) currentDiagram);
+            testText.setText(values[0] + " : " + values[1]);
             displayDiagram(currentDiagram);
         }
     }
     public void unDft() {
         Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
         if (diagram != null && diagram instanceof DftDiagram) {
-            currentDiagram = new Diagram(Calculator.unDft((DftDiagram) diagram), Diagram.DiagramType.LINE, "wynik odwrotnej dyskretnej transformaty fouriera");
+            currentDiagram = new Diagram(Calculator.simpleIDft((DftDiagram) diagram), Diagram.DiagramType.LINE, "wynik odwrotnej transformaty fouriera");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void fullDft() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.fullDft(diagram.getPoints(), Double.parseDouble(testValueField.getText()), 100), Diagram.DiagramType.LINE, "część rzeczywista");
+            displayDiagram(currentDiagram);
+        }
+    }
+    public void fft() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            Complex[] complexArray = ComplexCalculator.signalToComplexArray(diagram.getPoints());
+            Complex[] result = ComplexCalculator.fft(complexArray, ACC);
+            Diagram real = new Diagram(ComplexCalculator.complexToRealSignal(result, ACC), Diagram.DiagramType.LINE, "Rzeczywista");
+            Diagram imaginary = new Diagram(ComplexCalculator.complexToImaginarySignal(result, ACC), Diagram.DiagramType.LINE, "Urojona");
+            Diagram argument = new Diagram(ComplexCalculator.complexToArgumentSignal(result, ACC), Diagram.DiagramType.LINE, "Argument");
+            Diagram module = new Diagram(ComplexCalculator.complexToModuleSignal(result, ACC), Diagram.DiagramType.LINE, "Moduł");
+
+            addDiagramToLists(real);
+            addDiagramToLists(imaginary);
+            addDiagramToLists(argument);
+            addDiagramToLists(module);
+        }
+    }
+    public void setReal() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            real = diagram;
+            realDiagramName.setText(real.toString());
+        }
+    }
+    public void setImaginary() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            imaginary = diagram;
+            imaginaryDiagramName.setText(imaginary.toString());
+        }
+    }
+    public void iFft() {
+        if(real != null && imaginary != null){
+            Complex[] complex = ComplexCalculator.constructComplexSignal(real.getPoints(), imaginary.getPoints());
+            Complex[] result = ComplexCalculator.iFft(complex, ACC);
+            currentDiagram = new Diagram(ComplexCalculator.complexToRealSignal(result, ACC), Diagram.DiagramType.LINE, "Wynik IFFT");
             displayDiagram(currentDiagram);
         }
     }
 
+    public void waveletTransformDB4() {
+        Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
+        if (diagram != null) {
+            currentDiagram = new Diagram(Calculator.waveletTransform(diagram.getPoints()), Diagram.DiagramType.LINE, "wynik db4");
+            displayDiagram(currentDiagram);
+        }
+    }
+
+    public void generateExampleDiagrams() {
+        Diagram newDiagram1 = new Diagram(Calculator.exampleSignal1(ACC), Diagram.DiagramType.LINE, "przykładowy sygnał 1");
+        Diagram newDiagram2 = new Diagram(Calculator.exampleSignal2(ACC), Diagram.DiagramType.LINE, "przykładowy sygnał 2");
+        Diagram newDiagram3 = new Diagram(Calculator.exampleSignal3(ACC), Diagram.DiagramType.LINE, "przykładowy sygnał 3");
+        addDiagramToLists(newDiagram1);
+        addDiagramToLists(newDiagram2);
+        addDiagramToLists(newDiagram3);
+    }
 }
