@@ -982,14 +982,14 @@
                                 <Button mnemonicParsing="false" onAction="#fullDft" text="Dyskretna Transformata Fouriera" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                                 <Button mnemonicParsing="false" onAction="#fft" text="FFT" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                                 <Button mnemonicParsing="false" onAction="#iFft" text="IFFT" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-                                <Button mnemonicParsing="false" onAction="#setImaginary" text="Część Urojona" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                                <Button mnemonicParsing="false" onAction="#setReal" text="Część Rzeczywista" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                                <Text fx:id="realDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="Część Rzeczywista" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                                <Button mnemonicParsing="false" onAction="#setImaginary" text="Część Urojona lub H" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                                <Button mnemonicParsing="false" onAction="#setReal" text="Część Rzeczywista lub G" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                                <Text fx:id="realDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="Część Rzeczywista lub G" GridPane.rowIndex="7" GridPane.valignment="TOP">
                                     <GridPane.margin>
                                         <Insets left="10.0" />
                                     </GridPane.margin>
                                 </Text>
-                                <Text fx:id="imaginaryDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="Część Urojona" GridPane.rowIndex="8" GridPane.valignment="TOP">
+                                <Text fx:id="imaginaryDiagramName" strokeType="OUTSIDE" strokeWidth="0.0" text="Część Urojona lub H" GridPane.rowIndex="8" GridPane.valignment="TOP">
                                     <GridPane.margin>
                                         <Insets left="10.0" />
                                     </GridPane.margin>
@@ -1010,6 +1010,8 @@
                      <children>
                         <Button mnemonicParsing="false" onAction="#waveletTransformDB4" text="DB4" GridPane.halignment="CENTER" />
                         <Button mnemonicParsing="false" onAction="#generateExampleDiagrams" text="Diagramy z Zadania" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#dwt" text="Odwrotna transformacja Falkowa DWT" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                        <Text fx:id="timeDisplay" strokeType="OUTSIDE" strokeWidth="0.0" text="Czas trwania obliczeń = " GridPane.rowIndex="4" />
                      </children>
                         </GridPane>
                     </children>

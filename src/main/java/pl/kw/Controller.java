@@ -101,6 +101,7 @@ public class Controller implements Initializable {
     public TextField newNameField3;
     public Text realDiagramName;
     public Text imaginaryDiagramName;
+    public Text timeDisplay;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -820,7 +821,6 @@ public class Controller implements Initializable {
     public void dft() {
         Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
         if (diagram != null) {
-            //currentDiagram = new Diagram(Calculator.dft(diagram.getPoints()), Diagram.DiagramType.LINE, "wynik transformaty fouriera");
             currentDiagram = Calculator.simpleDft(diagram.getPoints(), (diagram.getPoints()[diagram.getPoints().length - 1][0] - diagram.getPoints()[0][0]) /
                     Double.parseDouble(testValueField.getText()),"wynik transformaty fouriera");
             double[] values = Calculator.pointValue((DftDiagram) currentDiagram);
@@ -838,19 +838,28 @@ public class Controller implements Initializable {
     public void fullDft() {
         Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
         if (diagram != null) {
-            currentDiagram = new Diagram(Calculator.fullDft(diagram.getPoints(), Double.parseDouble(testValueField.getText()), 100), Diagram.DiagramType.LINE, "część rzeczywista");
-            displayDiagram(currentDiagram);
+            long time = System.nanoTime();
+            double[][][] diagrams = Calculator.fullDft(diagram.getPoints(), Double.parseDouble(testValueField.getText()), 100);
+            time = (System.nanoTime() - time);
+            timeDisplay.setText("Czas trwania obliczeń = " + time + "ns");
+            Diagram newDiagram1 = new Diagram(diagrams[0], Diagram.DiagramType.LINE, "DFT Część Rzeczywista");
+            Diagram newDiagram2 = new Diagram(diagrams[1], Diagram.DiagramType.LINE, "DFT Część Urojona");
+            addDiagramToLists(newDiagram1);
+            addDiagramToLists(newDiagram2);
         }
     }
     public void fft() {
         Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
         if (diagram != null) {
             Complex[] complexArray = ComplexCalculator.signalToComplexArray(diagram.getPoints());
+            long time = System.nanoTime();
             Complex[] result = ComplexCalculator.fft(complexArray, ACC);
-            Diagram real = new Diagram(ComplexCalculator.complexToRealSignal(result, ACC), Diagram.DiagramType.LINE, "Rzeczywista");
-            Diagram imaginary = new Diagram(ComplexCalculator.complexToImaginarySignal(result, ACC), Diagram.DiagramType.LINE, "Urojona");
-            Diagram argument = new Diagram(ComplexCalculator.complexToArgumentSignal(result, ACC), Diagram.DiagramType.LINE, "Argument");
-            Diagram module = new Diagram(ComplexCalculator.complexToModuleSignal(result, ACC), Diagram.DiagramType.LINE, "Moduł");
+            time = (System.nanoTime() - time);
+            timeDisplay.setText("Czas trwania obliczeń = " + time + "ns");
+            Diagram real = new Diagram(ComplexCalculator.complexToRealSignal(result, ACC), Diagram.DiagramType.LINE, "FFT część Rzeczywista");
+            Diagram imaginary = new Diagram(ComplexCalculator.complexToImaginarySignal(result, ACC), Diagram.DiagramType.LINE, "FFT część Urojona");
+            Diagram argument = new Diagram(ComplexCalculator.complexToArgumentSignal(result, ACC), Diagram.DiagramType.LINE, "FFT Argument");
+            Diagram module = new Diagram(ComplexCalculator.complexToModuleSignal(result, ACC), Diagram.DiagramType.LINE, "FFT Moduł");
 
             addDiagramToLists(real);
             addDiagramToLists(imaginary);
@@ -875,7 +884,10 @@ public class Controller implements Initializable {
     public void iFft() {
         if(real != null && imaginary != null){
             Complex[] complex = ComplexCalculator.constructComplexSignal(real.getPoints(), imaginary.getPoints());
+            long time = System.nanoTime();
             Complex[] result = ComplexCalculator.iFft(complex, ACC);
+            time = (System.nanoTime() - time);
+            timeDisplay.setText("Czas trwania obliczeń = " + time + "ns");
             currentDiagram = new Diagram(ComplexCalculator.complexToRealSignal(result, ACC), Diagram.DiagramType.LINE, "Wynik IFFT");
             displayDiagram(currentDiagram);
         }
@@ -884,7 +896,24 @@ public class Controller implements Initializable {
     public void waveletTransformDB4() {
         Diagram diagram = (Diagram) listView3.getSelectionModel().getSelectedItem();
         if (diagram != null) {
-            currentDiagram = new Diagram(Calculator.waveletTransform(diagram.getPoints()), Diagram.DiagramType.LINE, "wynik db4");
+            long time = System.nanoTime();
+            double[][][] diagrams = Calculator.waveletTransform(diagram.getPoints());
+            time = (System.nanoTime() - time);
+            timeDisplay.setText("Czas trwania obliczeń = " + time + "ns");
+            Diagram newDiagram1 = new Diagram(diagrams[0], Diagram.DiagramType.LINE, "wynik G db4");
+            Diagram newDiagram2 = new Diagram(diagrams[1], Diagram.DiagramType.LINE, "wynik H db4");
+            addDiagramToLists(newDiagram1);
+            addDiagramToLists(newDiagram2);
+        }
+    }
+
+    public void dwt() {
+        if(real != null && imaginary != null){
+            long time = System.nanoTime();
+            double[][] result = Calculator.reverseWaveletTransform(real.getPoints(), imaginary.getPoints());
+            time = (System.nanoTime() - time);
+            timeDisplay.setText("Czas trwania obliczeń = " + time + "ns");
+            currentDiagram = new Diagram(result, Diagram.DiagramType.LINE, "Wynik DWT");
             displayDiagram(currentDiagram);
         }
     }
@@ -897,4 +926,5 @@ public class Controller implements Initializable {
         addDiagramToLists(newDiagram2);
         addDiagramToLists(newDiagram3);
     }
+
 }

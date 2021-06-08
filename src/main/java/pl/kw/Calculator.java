@@ -465,23 +465,28 @@ public class Calculator {
         }
         return points;
     }
-    public static double[][] fullDft(double[][] signal, double maxPeriods, int acc){
-        double[][] points = new double[acc][2];
+    public static double[][][] fullDft(double[][] signal, double maxPeriods, int acc){
+        double[][] real = new double[acc][2];
+        double[][] imag = new double[acc][2];
         double step = acc * (signal[signal.length - 1][0] - signal[0][0]) / maxPeriods;
         double timeStep = maxPeriods / acc;
         for(int i = 0; i < acc; i++){
-            points[i][0] = i * timeStep;
+            real[i][0] = i * timeStep;
+            imag[i][0] = i * timeStep;
             double period = step / i;
             double[] values = pointValue(simpleDft(signal, period, ""));
-            points[i][1] = values[1];
+            real[i][1] = values[1];
+            imag[i][1] = values[0];
         }
 
 
-        return points;
+        return new double[][][]{real, imag};
     }
-
+                                                    //7              6              5               4           3               2               1           0
     public static final double[] db4h = new double[]{0.2303778133, 0.7148465706, 0.6308807679, -0.0279837694, -0.1870348117, 0.0308413818, 0.0328830117, -0.0105974018};
     public static final double[] db4g = new double[]{-0.0105974018, -0.0328830117, 0.0308413818, 0.1870348117, -0.0279837694, -0.6308807679, 0.7148465706, -0.2303778133};
+    public static final double[] db4d = new double[]{0.0328830117, 0.7148465706, -0.1870348117, -0.0279837694, 0.6308807679, 0.0308413818, 0.2303778133, -0.0105974018};
+    public static final double[] db4r = new double[]{-0.0105974018, -0.2303778133, 0.0308413818, -0.6308807679, -0.0279837694, 0.1870348117, 0.7148465706, -0.0328830117};
 
 
     private static double singleWavelet(int index, double[][] signal, double[] arr) {
@@ -493,19 +498,31 @@ public class Calculator {
         }
         return sum;
     }
-    public static double[][] waveletTransform(double[][] signal){
-        double[][] result = new double[signal.length][2];
+    public static double[][][] waveletTransform(double[][] signal){
+        double[][] gResult = new double[signal.length / 2][2];
+        double[][] hResult = new double[signal.length / 2][2];
 
         for (int i = 0; i < signal.length; i++) {
-            result[i][0] = signal[i][0];
             if(i % 2 == 0){
-                result[i][1] = singleWavelet(i, signal, db4g);
+                gResult[i / 2][0] = signal[i][0] / 2;
+                gResult[i / 2][1] = singleWavelet(i, signal, db4g);
             }
             else {
-                result[i][1] = singleWavelet(i, signal, db4h);
+                hResult[i / 2][0] = signal[i][0] / 2;
+                hResult[i / 2][1] = singleWavelet(i, signal, db4h);
             }
         }
 
+        return new double[][][]{gResult, hResult};
+    }
+
+    public static double[][] reverseWaveletTransform(double[][] gSignal, double[][] hSignal){
+        double[][] result = new double[gSignal.length][2];
+
+        for (int i = 0; i < result.length; i++) {
+                result[i][0] = gSignal[i / 2][0] * 2;
+                result[i][1] = singleWavelet(i / 2, gSignal, db4r) + singleWavelet(i / 2, hSignal, db4d);
+        }
         return result;
     }
 
