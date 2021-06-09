@@ -517,7 +517,7 @@ public class Calculator {
     }
 
     public static double[][] reverseWaveletTransform(double[][] gSignal, double[][] hSignal){
-        double[][] result = new double[gSignal.length][2];
+        double[][] result = new double[gSignal.length + hSignal.length][2];
 
         for (int i = 0; i < result.length; i++) {
                 result[i][0] = gSignal[i / 2][0] * 2;
