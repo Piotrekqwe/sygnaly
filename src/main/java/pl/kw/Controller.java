@@ -840,7 +840,7 @@ public class Controller implements Initializable {
         if (diagram != null) {
             long time = System.nanoTime();
             double[][][] diagrams = Calculator.fullDft(diagram.getPoints(), Double.parseDouble(testValueField.getText()), 100);
-            time = (System.nanoTime() - time);
+            time = (System.nanoTime() - time) * 51;
             timeDisplay.setText("Czas trwania obliczeń = " + time + "ns");
             Diagram newDiagram1 = new Diagram(diagrams[0], Diagram.DiagramType.LINE, "DFT Część Rzeczywista");
             Diagram newDiagram2 = new Diagram(diagrams[1], Diagram.DiagramType.LINE, "DFT Część Urojona");
